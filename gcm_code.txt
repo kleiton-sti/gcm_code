@@ -4,9 +4,9 @@
 - Desenvolver um formulário de cadastro de colaboradores contendo os seguintes campos: Foto; Nome completo; Matrícula; CPF; QR Code gerado automaticamente.
 
 
-- Quem vai usar o sistema: o funcionário da STII e o funcionário da SEMOB.
+- Quem vai usar o sistema: o funcionário da STII, funcionário da SEMOB, funcionário da empresa terceirizada.
 
-    O funcionário da STII tem acesso normal a tudo (ele consegue cadastrar novos usuários (empresa e servidor semob ou stii))
+    O funcionário da STII tem acesso normal a tudo (ele consegue cadastrar novos usuários -empresa e servidor semob ou stii-)
 
     O servidor semob não terá acesso a cadastrar novos usuários,
 

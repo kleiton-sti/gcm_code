@@ -13,17 +13,16 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->integer('matricula')->unique();
+            $table->string('matricula')->unique();
             $table->string('email')->unique();
-            $table->bigInteger('cpf')->unique();
+            $table->string('cpf')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
             $table->text('motivo_delete');
-            $table->enum('tipo', ['stii', 'semob', 'terceirizada'])->default('user');
-            $table->string('caminho_foto')->nullable();
+            $table->enum('tipo', ['stii', 'semob', 'terceirizado'])->default('semob');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
