@@ -3,7 +3,7 @@
 ## Tecnologias utilizadas
 
 - **Backend:** PHP 8.2+ com **Laravel 12**
-- **Frontend/Build:** **Vite 6**, **Bootstrap 5** (via cdn), Axios
+- **Frontend/Build:** **Vite 6**, **Bootstrap 5**, Axios
 - **Templates:** Blade (`.blade.php`)
 - **Banco de dados:** Mysql, com suporte a outros drivers via `config/database.php`
 - **Testes:** Pest 4 (com plugin `pest-plugin-laravel`), PHPUnit
