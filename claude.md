@@ -3,9 +3,9 @@
 ## Tecnologias utilizadas
 
 - **Backend:** PHP 8.2+ com **Laravel 12**
-- **Frontend/Build:** **Vite 6**, **Tailwind CSS 4** (via `@tailwindcss/vite`), Axios
+- **Frontend/Build:** **Vite 6**, **Bootstrap 5** (via cdn), Axios
 - **Templates:** Blade (`.blade.php`)
-- **Banco de dados:** SQLite (`database/database.sqlite`), com suporte a outros drivers via `config/database.php`
+- **Banco de dados:** Mysql, com suporte a outros drivers via `config/database.php`
 - **Testes:** Pest 4 (com plugin `pest-plugin-laravel`), PHPUnit
 - **Dependências dev:** Laravel Pint (code style), Laravel Sail, Laravel Pail (logs), Faker, Mockery, Collision
 - **Gerenciadores de pacote:** Composer (PHP) e NPM (JS)
@@ -24,9 +24,10 @@ gcm_code/
 │   │   └── Requests/           # Form Requests de validação:
 │   │                           #   - CadastroGCMRequest.php (validação do cadastro de colaborador/crachá)
 │   │                           #   - CadastroUsuarioRequest.php (validação do cadastro de usuário)
-│   ├── Models/                 # Models Eloquent (apenas User.php até o momento)
+│   ├── Models/                 # Models Eloquent (apenas User.php e GuardaCivil.php até o momento)
 │   └── Providers/              # Service Providers da aplicação
-│
+│   |__ Rules/                  # Validadores de regras de negócio
+|           
 ├── bootstrap/                  # Bootstrap do framework (cache, app.php)
 │
 ├── config/                     # Arquivos de configuração (app, auth, database, session, etc.)
