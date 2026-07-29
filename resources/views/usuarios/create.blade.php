@@ -14,7 +14,7 @@
 
             <x-ui.card title="Dados do usuário">
 
-                <form action="#" method="POST">
+                <form action="{{ route('post.cadastroUsuario') }}" method="POST">
 
                     @csrf
 
@@ -31,6 +31,24 @@
 
                         <div class="col-md-6">
                             <x-form.input
+                                name="matricula"
+                                label="Matricula"
+                                placeholder="Digite a matricula"
+                                required
+                            />
+                        </div>
+
+                         <div class="col-md-6">
+                            <x-form.input
+                                name="cpf"
+                                label="CPF"
+                                placeholder="Digite o CPF"
+                                required
+                            />
+                        </div>
+
+                        <div class="col-md-6">
+                            <x-form.input
                                 name="email"
                                 type="email"
                                 label="E-mail"
@@ -41,7 +59,7 @@
 
                         <div class="col-md-6">
                             <x-form.input
-                                name="senha"
+                                name="password"
                                 type="password"
                                 label="Senha"
                                 placeholder="Digite a senha"
@@ -51,7 +69,7 @@
 
                         <div class="col-md-6">
                             <x-form.input
-                                name="confirmar_senha"
+                                name="password_confirmation"
                                 type="password"
                                 label="Confirmar senha"
                                 placeholder="Repita a senha"
@@ -61,12 +79,12 @@
 
                         <div class="col-md-6">
                             <x-form.select
-                                name="tipo_usuario"
+                                name="tipo"
                                 label="Tipo de usuário"
                                 :options="[
-                                    'administrador' => 'Administrador',
-                                    'operador' => 'Operador',
-                                    'consulta' => 'Consulta',
+                                    'stii' => 'STII',
+                                    'semob' => 'SEMOB',
+                                    'terceirizado' => 'Terceirizado',
                                 ]"
                                 required
                             />

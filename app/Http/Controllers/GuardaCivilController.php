@@ -25,9 +25,8 @@ class GuardaCivilController extends Controller
   public function registrarGCM(RegistroDeGCMRequest $informacoesDoGCM)
   {
     try {
-      
-      $informacoesDoGCM->validated();
-      $this->guardaCivilService->CriarGuardaEmDB($informacoesDoGCM);
+      $dados = $informacoesDoGCM->validated();
+      $this->guardaCivilService->CriarGuardaEmDB($dados);
       return redirect()->route('home')->with('success', 'Guarda Civil cadastrado com sucesso.');
 
     } catch (\Throwable $e) {

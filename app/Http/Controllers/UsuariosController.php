@@ -4,19 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CadastroNovosUsuariosRequest;
 use App\Http\Requests\LoginRequest;
+use App\Service\UsuariosService;
+use Illuminate\Support\Facades\Log;
 
 class UsuariosController extends Controller
 {
+    private $usuariosService;
+
+    public function __construct(UsuariosService $usuariosService)
+    {
+        $this->usuariosService = $usuariosService;
+    }
 
 
-    public function abrirPaginaDeCadastro() {
+    public function abrirPaginaDeCadastro()
+    {
         return view('cadastro-novos-usuarios');
     }
 
-    public function realizarCadastro(CadastroNovosUsuariosRequest $request)
+    public function realizarCadastro(CadastroNovosUsuariosRequest $informacoesDoUsuario)
     {
-        // chamar service para realizar cadastro de novo usuário
-        return response()->json(['success' => true, 'message' => 'Usuário cadastrado com sucesso!'], 200);  
+        try {
+            $informacoesDoUsuario = $informacoesDoUsuario->validated();
+            $this->usuariosService->cadastrarNovosUsuarioEmDB($informacoesDoUsuario);
+            return redirect()->route('paginaDeCadastro')->with('success', 'Usuário cadastrado com sucesso.');
 
+        } catch (\Throwable $e) {
+            Log::warning('Erro ao cadastrar novo usuário: ', ['error' => $e->getMessage()]);
+            return back()
+                ->withInput()
+                ->withErrors(['error', 'Ocorreu um erro ao registrar o GCM.']);
+        }
     }
 }

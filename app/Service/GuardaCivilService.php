@@ -20,22 +20,22 @@ class GuardaCivilService
     }
 
 
-    public function CriarGuardaEmDB($informacoesDoGCM)
+    public function CriarGuardaEmDB($dadosDoGCM)
     {
         try {
-            $caminhoFoto = null;
-
-            if($informacoesDoGCM->foto){
-                $caminhoFoto = $this->guardarArquivoService->guardarArquivo($informacoesDoGCM->foto, 'guardas/fotos');
-            }
-
             DB::beginTransaction();
 
+            $caminhoFoto = null;
+
+            if (isset($dadosDoGCM['foto'])) {
+                $caminhoFoto = $this->guardarArquivoService->guardarArquivo($dadosDoGCM['foto'], 'guardas/fotos');
+            }
+
             GuardaCivil::create([
-                'nome' => $informacoesDoGCM->nome,
-                'matricula' => $informacoesDoGCM->matricula,
-                'cpf' => $informacoesDoGCM->cpf,
-                'foto' => $caminhoFoto,
+                'nome' => $dadosDoGCM['nome'],
+                'matricula' => $dadosDoGCM['matricula'],
+                'cpf' => $dadosDoGCM['cpf'],
+                'caminho_foto' => $caminhoFoto,
             ]);
 
             DB::commit();
@@ -45,7 +45,7 @@ class GuardaCivilService
         } catch (\Exception $e) {
             Log::error('Erro ao criar guarda civil em Banco de Dados: ' . $e->getMessage());
 
-            if($caminhoFoto){
+            if ($caminhoFoto) {
                 $this->guardarArquivoService->excluirArquivo($caminhoFoto);
             }
 

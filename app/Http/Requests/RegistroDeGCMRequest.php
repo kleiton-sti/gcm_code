@@ -30,7 +30,7 @@ class RegistroDeGCMRequest extends FormRequest
             'nome' => ['required', 'string', 'min:5', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
             'matricula' => ['required', 'string', 'max:10', 'regex:/^\d+$/', 'unique:guardas_civil'],
             'cpf' => ['required', 'string', 'max:11', 'unique:guardas_civil', new ValidadorDeCpf()],
-            'foto' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'foto' => ['image', 'mimes:jpeg,png,jpg', 'max:10240'],
         ];
          
     }

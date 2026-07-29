@@ -34,7 +34,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ url('/usuarios/cadastro') }}" class="nav-link">
+                    <a href="{{ url('/usuarios') }}" class="nav-link">
                         <i class="bi bi-person-plus"></i>
                         <p>
                             Cadastro de Usuário

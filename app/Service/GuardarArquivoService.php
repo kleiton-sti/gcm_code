@@ -2,16 +2,40 @@
 
 namespace App\Service;
 
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+
 class GuardarArquivoService
 {
-     public function guardarArquivo($file, $path) {
-        $file->move($path, $file->getClientOriginalName());
-        return $path . '/' . $file->getClientOriginalName();
+    public function guardarArquivo($arquivo, $caminho)
+    {
+        try {
+            $novoNome = $this->renomearArquivo($arquivo);
+            return $arquivo->storeAs($caminho,$novoNome, 'public');
+        } catch (\Exception $e) {
+            Log::error('Erro ao salvar o arquivo: ', ['error' => $e->getMessage()]);
+            throw $e;
+        }
     }
 
-    public function excluirArquivo($path) {
-        if (file_exists($path)) {
-            unlink($path);
+    
+
+    public function excluirArquivo($caminho)
+    {
+        try {
+            if (file_exists($caminho)) {
+                Storage::disk('public')->delete($caminho);
+            }
+        } catch (\Exception $e) {
+            Log::error('Erro ao excluir o arquivo: ', ['error' => $e->getMessage()]);
+            throw $e;
         }
+    }
+
+
+
+    private function renomearArquivo($arquivo) {
+        $novoNome = now()->timestamp . '-' . $arquivo->getClientOriginalName();
+        return $novoNome;
     }
 }
