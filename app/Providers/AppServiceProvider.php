@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\View\Composers\UserComposer;
+use App\View\UserComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 

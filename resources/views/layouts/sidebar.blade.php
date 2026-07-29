@@ -2,7 +2,7 @@
 
     <div class="sidebar-brand">
 
-        <a href="/" class="brand-link text-white">
+        <a href="{{ url('/') }}" class="brand-link text-white">
             GCM
         </a>
 
@@ -16,16 +16,31 @@
             <ul class="nav sidebar-menu flex-column">
 
                 <li class="nav-item">
+                    <a href="{{ url('/') }}" class="nav-link">
+                        <i class="bi bi-speedometer2"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
 
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-person"></i>
+                <li class="nav-item">
+                    <a href="{{ url('/gcms') }}" class="nav-link">
+                        <i class="bi bi-people"></i>
                         <p>
                             Guardas
                         </p>
                     </a>
-
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ url('/usuarios/cadastro') }}" class="nav-link">
+                        <i class="bi bi-person-plus"></i>
+                        <p>
+                            Cadastro de Usuário
+                        </p>
+                    </a>
+                </li>
 
             </ul>
 
