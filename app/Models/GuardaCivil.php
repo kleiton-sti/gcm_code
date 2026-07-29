@@ -17,6 +17,7 @@ class GuardaCivil extends Model
         'matricula',
         'cpf',
         'caminho_foto',
+        'motivo_delete',
     ];
 
     protected function cast(): array

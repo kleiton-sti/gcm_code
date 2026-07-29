@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CadastroNovosUsuariosRequest;
+use App\Http\Requests\LoginRequest;
 
 class UsuariosController extends Controller
 {
+
 
     public function abrirPaginaDeCadastro() {
         return view('cadastro-novos-usuarios');

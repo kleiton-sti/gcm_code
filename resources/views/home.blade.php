@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'home')
 
 @section('content')
 
@@ -14,7 +14,7 @@
 
             <x-ui.card title="Dados do GCM">
 
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('post.registroGCM') }}" method="POST" enctype="multipart/form-data">
 
                     @csrf
 

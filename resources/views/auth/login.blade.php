@@ -15,7 +15,7 @@
         <div class="card-body">
             <p class="login-box-msg">Acesse com suas credenciais</p>
 
-            <form action="#" method="POST">
+            <form action="{{ route('post.login') }}" method="POST">
 
                 @csrf
 
@@ -28,7 +28,7 @@
                 />
 
                 <x-form.input
-                    name="senha"
+                    name="password"
                     type="password"
                     icon="bi-lock"
                     placeholder="Senha"

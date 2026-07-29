@@ -3,19 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegistroDeGCMRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Service\GuardaCivilService;
+use Illuminate\Support\Facades\Log;
 
 
 class GuardaCivilController extends Controller
 {
-  public function exibirRegistroGCMForm() {
-    return view('formulario-de-registroGCM');
+
+  private $guardaCivilService;
+
+  public function __construct(GuardaCivilService $guardaCivilService)
+  {
+    $this->guardaCivilService = $guardaCivilService;
   }
 
-  public function registrarGCM(RegistroDeGCMRequest $request) {
-    // lógica para chamar o service
-    return response()->json(['success' => true, 'message' => 'Guarda Civil cadastrado com sucesso!'], 200);
+  public function exibirRegistroGCMForm()
+  {
+    return view('home');
   }
+
+  public function registrarGCM(RegistroDeGCMRequest $informacoesDoGCM)
+  {
+    try {
+      
+      $informacoesDoGCM->validated();
+      $this->guardaCivilService->CriarGuardaEmDB($informacoesDoGCM);
+      return redirect()->route('home')->with('success', 'Guarda Civil cadastrado com sucesso.');
+
+    } catch (\Throwable $e) {
+      Log::warning('Erro ao registrar GCM: ', ['error' => $e->getMessage()]);
+      return back()
+        ->withInput()
+        ->withErrors(['error', 'Ocorreu um erro ao registrar o GCM.']);
+    }
+  }
+
+  
 
 }

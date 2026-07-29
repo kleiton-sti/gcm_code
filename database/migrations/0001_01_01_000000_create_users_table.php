@@ -16,13 +16,13 @@ return new class extends Migration {
             $table->string('matricula')->unique();
             $table->string('email')->unique();
             $table->string('cpf')->unique();
+            $table->enum('tipo', ['stii', 'semob', 'terceirizado'])->default('semob');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-            $table->text('motivo_delete');
-            $table->enum('tipo', ['stii', 'semob', 'terceirizado'])->default('semob');
+            $table->text('motivo_delete')->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 
 class AutenticacaoController extends Controller
@@ -11,13 +12,33 @@ class AutenticacaoController extends Controller
 
     public function realizarLogin(LoginRequest $credenciaisParaLogin)
     {
-        $credenciais = $credenciaisParaLogin->only('email', 'password');
+        try {
+            
+            if(!Auth::attempt($credenciaisParaLogin->only('email', 'password'))) {
+                return back()
+                    ->withInput()
+                    ->withErrors([
+                        'email' => 'O E-mail e/ou Senha estão incorretos.',
+                    ]);
+            } ;
 
-        if (Auth::attempt($credenciais)) {
-            $usuarioVerificado = Auth::user();
-            return response()->json(['success' => true, 'user' => $usuarioVerificado], 200);
-        } else {
-            return response()->json(['success' => false, 'message' => 'Credenciais inválidas'], 401);
+            $credenciaisParaLogin->session()->regenerate();
+
+            return redirect()->route('home');
+           
+
         }
+        catch (\Throwable $e) {
+
+            Log::warning('Erro ao realizar login: ', ['email' => $credenciaisParaLogin->email, 'error' => $e->getMessage()]);
+
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'email' => 'Ocorreu um erro ao realizar o login.',
+                ]);
+
+        }
+
     }
 }

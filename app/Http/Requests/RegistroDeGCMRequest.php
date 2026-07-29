@@ -7,13 +7,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegistroDeGCMRequest extends FormRequest
 {
+    
     public function authorize(): bool
     {
         return auth()->user()->tipo == 'terceirizado' ? false : true;
     }
 
     public function prepareForValidation()
-    {
+    {   
         $this->merge([
             'nome' => mb_convert_case(preg_replace('/\s+/', ' ', trim($this->nome)), MB_CASE_TITLE, 'UTF-8'),
             'matricula' => trim($this->matricula),
@@ -24,12 +25,14 @@ class RegistroDeGCMRequest extends FormRequest
     
     public function rules(): array
     {
+        
         return [
             'nome' => ['required', 'string', 'min:5', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
             'matricula' => ['required', 'string', 'max:10', 'regex:/^\d+$/', 'unique:guardas_civil'],
             'cpf' => ['required', 'string', 'max:11', 'unique:guardas_civil', new ValidadorDeCpf()],
             'foto' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
+         
     }
 
 
