@@ -100,7 +100,7 @@
                             Limpar
                         </button>
 
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" @cannot('terceirizado-nao-pode') disabled @endcannot @cannot('semob-nao-pode') disabled @endcannot>
                             <i class="bi bi-check-lg"></i>
                             Cadastrar
                         </button>

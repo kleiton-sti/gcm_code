@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'home')
+@section('title', 'Registro de GCM')
 
 @section('content')
 
     <x-ui.page-header
-        title="Dashboard"
-        subtitle="Cadastro de Guarda Civil Municipal"
+        title="Registro de GCM"
+        subtitle="Registro de Guarda Civil Municipal"
     />
 
     <div class="app-content">
@@ -67,7 +67,7 @@
                             Limpar
                         </button>
 
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" @cannot('terceirizado-nao-pode') disabled @endcannot>
                             <i class="bi bi-check-lg"></i>
                             Salvar
                         </button>

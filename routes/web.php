@@ -11,15 +11,15 @@ Route::post('/login', [App\Http\Controllers\AutenticacaoController::class, 'real
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
-
-    Route::post('/registro/gcm', [App\Http\Controllers\GuardaCivilController::class, 'registrarGCM'])->name('post.registroGCM');
-
     Route::get('/gcms', function () {
         return view('gcm.index');
-    });
+    })->name('home');
+
+    Route::get('/registro', function () {
+        return view('gcm.registro');
+    })->name('regsitroGCM');
+
+    Route::post('/registro/gcm', [App\Http\Controllers\GuardaCivilController::class, 'registrarGCM'])->name('post.registroGCM');
 
     Route::get('/gcms/{id}', function ($id) {
         return view('gcm.show', ['id' => $id]);

@@ -19,7 +19,7 @@ class GuardaCivilController extends Controller
 
   public function exibirRegistroGCMForm()
   {
-    return view('home');
+    return view('regsitroGCM');
   }
 
   public function registrarGCM(RegistroDeGCMRequest $informacoesDoGCM)
@@ -27,7 +27,7 @@ class GuardaCivilController extends Controller
     try {
       $dados = $informacoesDoGCM->validated();
       $this->guardaCivilService->CriarGuardaEmDB($dados);
-      return redirect()->route('home')->with('success', 'Guarda Civil cadastrado com sucesso.');
+      return redirect()->route('regsitroGCM')->with('success', 'Guarda Civil cadastrado com sucesso.');
 
     } catch (\Throwable $e) {
       Log::warning('Erro ao registrar GCM: ', ['error' => $e->getMessage()]);
