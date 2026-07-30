@@ -4,16 +4,6 @@
 
 @section('content')
 
-    @php
-        // Dados fictícios exibidos independente do identificador informado na rota
-        $guarda = [
-            'foto' => 'https://i.pravatar.cc/200?img=12',
-            'nome' => 'Carlos Eduardo Silva',
-            'matricula' => '000123',
-            'cpf' => '123.456.789-00',
-            'status' => 'Ativo',
-        ];
-    @endphp
 
     <x-ui.page-header title="Detalhes do GCM" subtitle="Visualização somente leitura">
         <x-slot:actions>
@@ -32,7 +22,7 @@
 
                     <div class="col-md-3 text-center">
                         <x-ui.avatar
-                            :src="$guarda['foto']"
+                            :src="$guarda['caminho_foto']"
                             :alt="$guarda['nome']"
                             :size="150"
                         />

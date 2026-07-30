@@ -11,21 +11,16 @@ Route::post('/login', [App\Http\Controllers\AutenticacaoController::class, 'real
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/gcms', function () {
-        return view('gcm.index');
-    })->name('home');
-
-    Route::get('/buscar/gcm', [App\Http\Controllers\GuardaCivilController::class, 'BuscarExibirGuardasCivis'])->name('get.buscarGCM');
-
+    Route::get('/gcms', [App\Http\Controllers\GuardaCivilController::class, 'encaminharParaIndex'])->name('home');
+    
     Route::get('/registro', function () {
         return view('gcm.registro');
     })->name('regsitroGCM');
 
     Route::post('/registrar/gcm', [App\Http\Controllers\GuardaCivilController::class, 'registrarGCM'])->name('post.registroGCM');
 
-    Route::get('/gcms/{id}', function ($id) {
-        return view('gcm.show', ['id' => $id]);
-    });
+    Route::get('/gcms/{id}', [App\Http\Controllers\GuardaCivilController::class, 'visualizarDadosDoGCM'])->name('get.visualizarGCM');
+    
 
     Route::get('/usuarios', function () {
         return view('usuarios.create');

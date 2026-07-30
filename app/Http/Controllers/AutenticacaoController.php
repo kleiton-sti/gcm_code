@@ -26,7 +26,7 @@ class AutenticacaoController extends Controller
 
             $credenciaisParaLogin->session()->regenerate();
 
-            return redirect()->route('get.buscarGCM');
+            return redirect()->route('home');
 
 
         } catch (\Throwable $e) {

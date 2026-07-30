@@ -4,12 +4,13 @@
 ])
 
 <div class="btn-group" role="group" aria-label="Ações">
+
     <a href="{{ url("/gcms/{$id}") }}" class="btn btn-sm btn-outline-primary" title="Visualizar">
-        <i class="bi bi-eye"></i>
+        <i class="fa-regular fa-eye color-secondary"></i>
     </a>
 
     <a href="#" class="btn btn-sm btn-outline-warning" title="Editar">
-        <i class="bi bi-pencil"></i>
+        <i class="fa-regular fa-pen-to-square color-warnming"></i>
     </a>
 
     <button
@@ -18,6 +19,7 @@
         title="Excluir"
         onclick="return confirm('Deseja realmente excluir {{ $nome }}?')"
     >
-        <i class="bi bi-trash"></i>
+        <i class="fa-regular fa-trash-can color-danger"></i>
+
     </button>
 </div>
