@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 class GuardarArquivoService
 {
-    public function guardarArquivo($arquivo, $caminho)
+    public function guardarArquivo($caminho, $arquivo)
     {
         try {
             $novoNome = $this->renomearArquivo($arquivo);

@@ -91,4 +91,28 @@ class GuardaCivilService
             throw $e;
         }
     }
+
+
+    public function excluirGuardaEmDB($id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $guarda = GuardaCivil::find($id);
+            $caminhoFoto = $guarda->caminho_foto;
+
+            $this->guardarArquivoService->excluirArquivo($guarda->caminho_foto);
+
+            $guarda->delete();
+
+            DB::commit();
+
+            Log::info('Guarda Civil excluido com sucesso.');
+
+        } catch (\Exception $e) {
+            Log::error('Erro ao excluir guarda civil em Banco de Dados: ' . $e->getMessage());
+            DB::rollBack();
+            throw $e;
+        }
+    }
 }

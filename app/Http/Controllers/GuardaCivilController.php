@@ -88,6 +88,18 @@ class GuardaCivilController extends Controller
     }
   }
 
+  
+  public function excluirGCM($id)
+  {
+    try {
+      $this->guardaCivilService->excluirGuardaEmDB($id);
+      return redirect()->route('home')->with('success', 'Guarda Civil excluido com sucesso.');
+    } catch (\Throwable $e) {
+      Log::warning('Erro ao excluir GCM: ', ['error' => $e->getMessage()]);
+      return redirect()->route('home')->with('error', 'Ocorreu um erro ao excluir o GCM.');
+    }
+  }
+
 
   private function obterGuardasDoDB()
   {
