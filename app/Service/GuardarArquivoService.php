@@ -17,13 +17,12 @@ class GuardarArquivoService
             throw $e;
         }
     }
-
-    
+ 
 
     public function excluirArquivo($caminho)
     {
         try {
-            if (file_exists($caminho)) {
+            if (Storage::disk('public')->exists($caminho)) {
                 Storage::disk('public')->delete($caminho);
             }
         } catch (\Exception $e) {
@@ -35,7 +34,7 @@ class GuardarArquivoService
 
 
     private function renomearArquivo($arquivo) {
-        $novoNome = now()->timestamp . '-' . $arquivo->getClientOriginalName();
+        $novoNome = now()->format('Y-m-d') . '-' . $arquivo->getClientOriginalName();
         return $novoNome;
     }
 }

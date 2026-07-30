@@ -53,4 +53,42 @@ class GuardaCivilService
             throw $e;
         }
     }
+
+
+    public function atualizarGuardaEmDB($guarda, $id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $caminhoFoto = null;
+
+            $dadosAnteriorDoGCM = GuardaCivil::where('id', $id)->get();
+
+            if (isset($guarda['foto']) && $guarda['foto'] != $dadosAnteriorDoGCM->first()->caminho_foto) {
+                $this->guardarArquivoService->excluirArquivo($dadosAnteriorDoGCM->first()->caminho_foto);
+                $caminhoFoto = $this->guardarArquivoService->guardarArquivo($guarda['foto'], 'guardas/fotos');
+            }
+
+            GuardaCivil::where('id', $id)->update([
+                'nome' => $guarda['nome'],
+                'matricula' => $guarda['matricula'],
+                'cpf' => $guarda['cpf'],
+                'caminho_foto' => $caminhoFoto,
+            ]);
+
+            DB::commit();
+
+            Log::info('Guarda Civil atualizado com sucesso.');
+
+        } catch (\Exception $e) {
+            Log::error('Erro ao atualizar guarda civil em Banco de Dados: ' . $e->getMessage());
+
+            if ($caminhoFoto) {
+                $this->guardarArquivoService->excluirArquivo($caminhoFoto);
+            }
+
+            DB::rollBack();
+            throw $e;
+        }
+    }
 }

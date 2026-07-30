@@ -10,7 +10,7 @@
     <div class="mb-2">
         <img
             id="{{ $name }}-preview"
-            src="{{ $preview ?? 'https://placehold.co/150x150?text=Foto' }}"
+            src="{{ $preview ?? asset('img/usuario-padrao.jpg') }}"
             alt="Pré-visualização da foto"
             class="rounded-circle border"
             style="width: 150px; height: 150px; object-fit: cover;"

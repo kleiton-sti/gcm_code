@@ -5,11 +5,11 @@
 
 <div class="btn-group" role="group" aria-label="Ações">
 
-    <a href="{{ url("/gcms/{$id}") }}" class="btn btn-sm btn-outline-primary" title="Visualizar">
+    <a href="{{ route('get.visualizarGCM', ['id' => $id]) }}" class="btn btn-sm btn-outline-primary" title="Visualizar">
         <i class="fa-regular fa-eye color-secondary"></i>
     </a>
 
-    <a href="#" class="btn btn-sm btn-outline-warning" title="Editar">
+    <a href="{{ route('get.editarGCM', ['id' => $id]) }}" class="btn btn-sm btn-outline-warning" title="Editar">
         <i class="fa-regular fa-pen-to-square color-warnming"></i>
     </a>
 
