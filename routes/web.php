@@ -15,11 +15,13 @@ Route::middleware(['auth'])->group(function () {
         return view('gcm.index');
     })->name('home');
 
+    Route::get('/buscar/gcm', [App\Http\Controllers\GuardaCivilController::class, 'BuscarExibirGuardasCivis'])->name('get.buscarGCM');
+
     Route::get('/registro', function () {
         return view('gcm.registro');
     })->name('regsitroGCM');
 
-    Route::post('/registro/gcm', [App\Http\Controllers\GuardaCivilController::class, 'registrarGCM'])->name('post.registroGCM');
+    Route::post('/registrar/gcm', [App\Http\Controllers\GuardaCivilController::class, 'registrarGCM'])->name('post.registroGCM');
 
     Route::get('/gcms/{id}', function ($id) {
         return view('gcm.show', ['id' => $id]);
@@ -29,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
         return view('usuarios.create');
     })->name('paginaDeCadastro');
 
-    Route::post('/cadastro/usuario', [App\Http\Controllers\UsuariosController::class, 'realizarCadastro'])->name('post.cadastroUsuario');
+    Route::post('/cadastrar/usuario', [App\Http\Controllers\UsuariosController::class, 'realizarCadastro'])->name('post.cadastroUsuario');
 
     Route::get('/logout', [App\Http\Controllers\AutenticacaoController::class, 'realizarLogout'])->name('post.logout');
 });

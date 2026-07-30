@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegistroDeGCMRequest;
+use App\Models\GuardaCivil;
 use App\Service\GuardaCivilService;
 use Illuminate\Support\Facades\Log;
 
@@ -17,10 +18,7 @@ class GuardaCivilController extends Controller
     $this->guardaCivilService = $guardaCivilService;
   }
 
-  public function exibirRegistroGCMForm()
-  {
-    return view('regsitroGCM');
-  }
+
 
   public function registrarGCM(RegistroDeGCMRequest $informacoesDoGCM)
   {
@@ -34,6 +32,18 @@ class GuardaCivilController extends Controller
       return back()
         ->withInput()
         ->withErrors(['error', 'Ocorreu um erro ao registrar o GCM.']);
+    }
+  }
+
+
+  public function BuscarExibirGuardasCivis() {
+    try{
+      $guardasCivis = GuardaCivil::orderBy('nome')->paginate(20);
+      return view('gcm.index', compact('guardasCivis'));
+
+    } catch (\Throwable $e) {
+      Log::warning('Erro ao exibir guardas civis: ', ['error' => $e->getMessage()]);
+      return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os guardas civis.');
     }
   }
 

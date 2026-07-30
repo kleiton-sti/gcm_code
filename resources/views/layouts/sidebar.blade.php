@@ -17,7 +17,7 @@
 
                 
                 <li class="nav-item">
-                    <a href="{{ url('/gcms') }}" class="nav-link">
+                    <a href="{{ route('get.buscarGCM') }}" class="nav-link">
                         <i class="bi bi-people"></i>
                         <p>
                             Guardas

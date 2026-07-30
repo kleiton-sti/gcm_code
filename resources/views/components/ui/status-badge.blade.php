@@ -1,13 +1,8 @@
-@props(['status'])
+@props(['deletado' => false])
 
 @php
-    $classesPorStatus = [
-        'ativo' => 'text-bg-success',
-        'inativo' => 'text-bg-secondary',
-        'pendente' => 'text-bg-warning',
-    ];
-
-    $classeBadge = $classesPorStatus[strtolower($status)] ?? 'text-bg-light';
+    $classesPorStatus = $deletado ? 'text-bg-danger' : 'text-bg-success';
+    $status = $deletado ? 'Inativo' : 'Ativo';
 @endphp
 
-<span class="badge {{ $classeBadge }}">{{ $status }}</span>
+<span class="badge {{ $classesPorStatus }}">{{ $status }}</span>

@@ -12,44 +12,6 @@
     <div class="app-content">
         <div class="container-fluid">
 
-            @php
-                // Dados fictícios exibidos apenas para fins de demonstração da interface
-                $guardas = [
-                    [
-                        'id' => 1,
-                        'foto' => 'https://i.pravatar.cc/80?img=12',
-                        'nome' => 'Carlos Eduardo Silva',
-                        'matricula' => '000123',
-                        'cpf' => '123.456.789-00',
-                        'status' => 'Ativo',
-                    ],
-                    [
-                        'id' => 2,
-                        'foto' => 'https://i.pravatar.cc/80?img=32',
-                        'nome' => 'Fernanda Souza Lima',
-                        'matricula' => '000124',
-                        'cpf' => '987.654.321-00',
-                        'status' => 'Ativo',
-                    ],
-                    [
-                        'id' => 3,
-                        'foto' => 'https://i.pravatar.cc/80?img=45',
-                        'nome' => 'João Pedro Almeida',
-                        'matricula' => '000125',
-                        'cpf' => '456.789.123-00',
-                        'status' => 'Pendente',
-                    ],
-                    [
-                        'id' => 4,
-                        'foto' => 'https://i.pravatar.cc/80?img=5',
-                        'nome' => 'Mariana Costa Ribeiro',
-                        'matricula' => '000126',
-                        'cpf' => '321.654.987-00',
-                        'status' => 'Inativo',
-                    ],
-                ];
-            @endphp
-
             <x-ui.card title="Guardas cadastrados">
 
                 <div class="table-responsive">
@@ -65,11 +27,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($guardas as $guarda)
+                            @foreach ($guardasCivis as $guarda)
                                 <tr>
                                     <td>
                                         <x-ui.avatar
-                                            :src="$guarda['foto']"
+                                            :src="$guarda['caminho_foto']"
                                             :alt="$guarda['nome']"
                                         />
                                     </td>
@@ -77,7 +39,7 @@
                                     <td>{{ $guarda['matricula'] }}</td>
                                     <td>{{ $guarda['cpf'] }}</td>
                                     <td>
-                                        <x-ui.status-badge :status="$guarda['status']" />
+                                        <x-ui.status-badge :deletado="$guarda['deleted_at']" />
                                     </td>
                                     <td class="text-end">
                                         <x-ui.action-buttons

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 
 class AutenticacaoController extends Controller
@@ -26,7 +26,7 @@ class AutenticacaoController extends Controller
 
             $credenciaisParaLogin->session()->regenerate();
 
-            return redirect()->route('home');
+            return redirect()->route('get.buscarGCM');
 
 
         } catch (\Throwable $e) {
@@ -51,7 +51,7 @@ class AutenticacaoController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
-            return redirect()->route('paginaDeLogin');
+            return redirect()->route('login');
             
         } catch (\Throwable $e) {
             Log::warning('Erro ao realizar logout: ', ['error' => $e->getMessage()]);
