@@ -8,7 +8,7 @@
     <x-ui.page-header title="Detalhes do GCM" subtitle="Editar dados do GCM">
         <x-slot:actions>
             <a href="{{ route('home') }}" class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-left"></i> Voltar para a lista
+                <i class="fa-regular fa-circle-left"></i> Voltar para a lista
             </a>
         </x-slot:actions>
     </x-ui.page-header>
@@ -87,7 +87,7 @@
                         </button>
 
                         <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-check-lg"></i>
+                            <i class="fa-regular fa-circle-check"></i>
                             Salvar
                         </button>
 

@@ -21,7 +21,7 @@
     <div class="{{ $icon ? 'input-group' : '' }}">
         @if ($icon)
             <span class="input-group-text">
-                <i class="bi {{ $icon }}"></i>
+                <i class="{{ $icon }}"></i>
             </span>
         @endif
 

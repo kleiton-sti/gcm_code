@@ -68,7 +68,7 @@
                         </button>
 
                         <button type="submit" class="btn btn-primary" @cannot('terceirizado-nao-pode') disabled @endcannot>
-                            <i class="bi bi-check-lg"></i>
+                            <i class="fa-regular fa-circle-check"></i>
                             Salvar
                         </button>
 

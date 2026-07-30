@@ -8,7 +8,7 @@
     <x-ui.page-header title="Detalhes do GCM" subtitle="Visualização somente leitura">
         <x-slot:actions>
             <a href="{{ url('/gcms') }}" class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-left"></i> Voltar para a lista
+                <i class="fa-regular fa-circle-left"></i> Voltar para a lista
             </a>
         </x-slot:actions>
     </x-ui.page-header>

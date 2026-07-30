@@ -22,7 +22,7 @@
                 <x-form.input
                     name="email"
                     type="email"
-                    icon="bi-envelope"
+                    icon="fa-regular fa-envelope"
                     placeholder="Endereço de e-mail"
                     required
                 />
@@ -30,7 +30,7 @@
                 <x-form.input
                     name="password"
                     type="password"
-                    icon="bi-lock"
+                    icon="fa-solid fa-lock"
                     placeholder="Senha"
                     required
                 />
