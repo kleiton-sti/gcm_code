@@ -58,4 +58,7 @@
         </div>
     </div>
 
+        <x-ui.modal id="modalInativarGCM"/>
+
+
 @endsection

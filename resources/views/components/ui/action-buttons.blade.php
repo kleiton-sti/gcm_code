@@ -17,7 +17,10 @@
         type="button"
         class="btn btn-sm btn-outline-danger"
         title="Excluir"
-        onclick="return confirm('Deseja realmente excluir {{ $nome }}?')"
+        data-bs-toggle="modal"
+        data-bs-target="#modalInativarGCM"
+        data-id="{{ $id }}"
+        data-nome="{{ $nome }}"
     >
         <i class="fa-regular fa-trash-can color-danger"></i>
 

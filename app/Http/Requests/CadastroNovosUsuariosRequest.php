@@ -23,7 +23,6 @@ class CadastroNovosUsuariosRequest extends FormRequest
             'matricula' => trim($this->matricula),
             'email' => mb_strtolower(trim($this->email), 'UTF-8'),
             'cpf' => preg_replace('/\D/', '', $this->cpf),
-            'motivo_delete' => trim($this->motivo_delete),
         ]);
 
     }
@@ -44,7 +43,6 @@ class CadastroNovosUsuariosRequest extends FormRequest
                 new ValidadorDeCpf(),
             ],
             'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised()], // Have I Been Pwned
-            'motivo_delete' => ['string', 'min:5', 'max:255'],
             'tipo' => ['required', Rule::in(['stii', 'semob', 'terceirizado'])],
         ];
 

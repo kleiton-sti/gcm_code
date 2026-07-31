@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AtualizarRegistroGCMRequest;
+use App\Http\Requests\InativacaoDeGCMRequest;
 use App\Http\Requests\RegistroDeGCMRequest;
 use App\Models\GuardaCivil;
 use App\Service\GuardaCivilService;
@@ -59,6 +60,7 @@ class GuardaCivilController extends Controller
     try {
       $guarda = GuardaCivil::find($id);
       return view('gcm.show', compact('guarda'));
+
     } catch (\Throwable $e) {
       Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
       return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
@@ -70,6 +72,7 @@ class GuardaCivilController extends Controller
     try {
       $guarda = GuardaCivil::find($id);
       return view('gcm.edit', compact('guarda'));
+
     } catch (\Throwable $e) {
       Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
       return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
@@ -82,6 +85,7 @@ class GuardaCivilController extends Controller
       $guarda = $informacoesDoGCM->validated();
       $this->guardaCivilService->atualizarGuardaEmDB($guarda, $id);
       return redirect()->route('home')->with('success', 'Guarda Civil atualizado com sucesso.');
+
     } catch (\Throwable $e) {
       Log::warning('Erro ao atualizar GCM: ', ['error' => $e->getMessage()]);
       return redirect()->route('home')->with('error', 'Ocorreu um erro ao atualizar o GCM. Verifique se ja existe um GCM com o mesmo dado.');
@@ -89,11 +93,13 @@ class GuardaCivilController extends Controller
   }
 
   
-  public function excluirGCM($id)
+  public function inativarGCM(InativacaoDeGCMRequest $request, $id)
   {
     try {
-      $this->guardaCivilService->excluirGuardaEmDB($id);
+      $motivo = $request->validated()['motivo_delete'];
+      $this->guardaCivilService->excluirGuardaEmDB($motivo,$id);
       return redirect()->route('home')->with('success', 'Guarda Civil excluido com sucesso.');
+
     } catch (\Throwable $e) {
       Log::warning('Erro ao excluir GCM: ', ['error' => $e->getMessage()]);
       return redirect()->route('home')->with('error', 'Ocorreu um erro ao excluir o GCM.');
@@ -104,7 +110,7 @@ class GuardaCivilController extends Controller
   private function obterGuardasDoDB()
   {
     try {
-      return GuardaCivil::orderBy('nome')->paginate(20);
+      return GuardaCivil::withTrashed()->orderBy('nome')->paginate(20);
     } catch (\Throwable $e) {
       Log::warning('Erro ao exibir guardas civis: ', ['error' => $e->getMessage()]);
     }

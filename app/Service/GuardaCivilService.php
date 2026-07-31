@@ -62,7 +62,8 @@ class GuardaCivilService
 
             $caminhoFoto = null;
 
-            $dadosAnteriorDoGCM = GuardaCivil::where('id', $id)->get();
+            $dadosAnteriorDoGCM = GuardaCivil::findOrFail($id);
+
 
             if (isset($guarda['foto']) && $guarda['foto'] != $dadosAnteriorDoGCM->first()->caminho_foto) {
                 $this->guardarArquivoService->excluirArquivo($dadosAnteriorDoGCM->first()->caminho_foto);
@@ -93,19 +94,25 @@ class GuardaCivilService
     }
 
 
-    public function excluirGuardaEmDB($id)
+    public function excluirGuardaEmDB($motivo, $id)
     {
         try {
+
             DB::beginTransaction();
 
             $guarda = GuardaCivil::find($id);
             $caminhoFoto = $guarda->caminho_foto;
 
-            $this->guardarArquivoService->excluirArquivo($guarda->caminho_foto);
+            GuardaCivil::where('id', $id)->update([
+                'motivo_delete' => $motivo,
+            ]);
 
-            $guarda->delete();
+            GuardaCivil::where('id', $id)->delete();
 
             DB::commit();
+
+            if ($caminhoFoto != null)
+                $this->guardarArquivoService->excluirArquivo($caminhoFoto);
 
             Log::info('Guarda Civil excluido com sucesso.');
 
