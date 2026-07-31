@@ -67,7 +67,7 @@ class GuardaCivilService
 
             if (isset($guarda['foto']) && $guarda['foto'] != $dadosAnteriorDoGCM->first()->caminho_foto) {
                 $this->guardarArquivoService->excluirArquivo($dadosAnteriorDoGCM->first()->caminho_foto);
-                $caminhoFoto = $this->guardarArquivoService->guardarArquivo($guarda['foto'], 'guardas/fotos');
+                $caminhoFoto = $this->guardarArquivoService->guardarArquivo('guardas/fotos', $guarda['foto']);
             }
 
             GuardaCivil::where('id', $id)->update([
