@@ -7,6 +7,7 @@ Route::get('/', function () {
 })->name('login');
 
 Route::post('/login', [App\Http\Controllers\AutenticacaoController::class, 'realizarLogin'])->name('post.login');
+Route::get('/qrcode', function() { return view('layouts.guest');})->name('qrcode');
 
 
 Route::middleware(['auth'])->group(function () {

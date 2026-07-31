@@ -127,7 +127,7 @@ class GuardaCivilService
     {
         return GuardaCivil::withTrashed()
             ->orderBy('nome')
-            ->paginate(20);
+            ->get();
     }
 
 

@@ -7,12 +7,12 @@
 @php
  $classeBgColorBtn;
 
- if ($guarda->trashed()) {
-     $classeBgColorBtn = 'btn-danger';
- }
- else {
-     $classeBgColorBtn = 'btn-outline-danger';
- }
+    if ($guarda->trashed() || Gate::denies('terceirizado-nao-pode')) {
+        $classeBgColorBtn = 'btn-danger';
+    }
+    else {
+        $classeBgColorBtn = 'btn-outline-danger';
+    }
 @endphp
 
 <div class="btn-group" role="group" aria-label="Ações">

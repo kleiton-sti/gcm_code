@@ -15,7 +15,7 @@
             <x-ui.card title="Guardas cadastrados">
 
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle">
+                    <table id="tabela" class="table table-hover align-middle">
                         <thead>
                             <tr>
                                 <th scope="col">Foto</th>
