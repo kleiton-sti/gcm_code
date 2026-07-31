@@ -25,7 +25,7 @@ class GuardaCivilController extends Controller
   public function encaminharParaIndex()
   {
     try {
-      $guardasCivis = $this->obterGuardasDoDB();
+      $guardasCivis = $this->guardaCivilService->obterGuardasDoDB();
       return view('gcm.index', compact('guardasCivis'));
 
     } catch (\Throwable $e) {
@@ -58,7 +58,7 @@ class GuardaCivilController extends Controller
   {
 
     try {
-      $guarda = GuardaCivil::find($id);
+      $guarda = $this->guardaCivilService->obterGuardaPorIdComInativos($id);
       return view('gcm.show', compact('guarda'));
 
     } catch (\Throwable $e) {
@@ -70,7 +70,7 @@ class GuardaCivilController extends Controller
   public function exibirBladeDeEdicao($id)
   {
     try {
-      $guarda = GuardaCivil::find($id);
+      $guarda = $this->guardaCivilService->obterGuardaPorIdComInativos($id);
       return view('gcm.edit', compact('guarda'));
 
     } catch (\Throwable $e) {
@@ -92,27 +92,17 @@ class GuardaCivilController extends Controller
     }
   }
 
-  
+
   public function inativarGCM(InativacaoDeGCMRequest $request, $id)
   {
     try {
       $motivo = $request->validated()['motivo_delete'];
-      $this->guardaCivilService->excluirGuardaEmDB($motivo,$id);
+      $this->guardaCivilService->excluirGuardaEmDB($motivo, $id);
       return redirect()->route('home')->with('success', 'Guarda Civil excluido com sucesso.');
 
     } catch (\Throwable $e) {
       Log::warning('Erro ao excluir GCM: ', ['error' => $e->getMessage()]);
       return redirect()->route('home')->with('error', 'Ocorreu um erro ao excluir o GCM.');
-    }
-  }
-
-
-  private function obterGuardasDoDB()
-  {
-    try {
-      return GuardaCivil::withTrashed()->orderBy('nome')->paginate(20);
-    } catch (\Throwable $e) {
-      Log::warning('Erro ao exibir guardas civis: ', ['error' => $e->getMessage()]);
     }
   }
 

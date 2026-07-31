@@ -122,4 +122,18 @@ class GuardaCivilService
             throw $e;
         }
     }
+
+    public function obterGuardasDoDB()
+    {
+        return GuardaCivil::withTrashed()
+            ->orderBy('nome')
+            ->paginate(20);
+    }
+
+
+    public function obterGuardaPorIdComInativos(int $id): GuardaCivil
+    {
+        return GuardaCivil::withTrashed()->findOrFail($id);
+    }
+
 }

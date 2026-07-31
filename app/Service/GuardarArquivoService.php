@@ -10,6 +10,11 @@ class GuardarArquivoService
     public function guardarArquivo($caminho, $arquivo)
     {
         try {
+
+             if ($arquivo === null) {
+                return null;
+            }
+
             $novoNome = $this->renomearArquivo($arquivo);
             return $arquivo->storeAs($caminho,$novoNome, 'public');
         } catch (\Exception $e) {
@@ -22,6 +27,11 @@ class GuardarArquivoService
     public function excluirArquivo($caminho)
     {
         try {
+
+            if (empty($caminho)) {
+                return;
+            }
+
             if (Storage::disk('public')->exists($caminho)) {
                 Storage::disk('public')->delete($caminho);
             }

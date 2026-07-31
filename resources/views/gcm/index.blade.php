@@ -45,6 +45,7 @@
                                         <x-ui.action-buttons
                                             :id="$guarda['id']"
                                             :nome="$guarda['nome']"
+                                            :guarda="$guarda"
                                         />
                                     </td>
                                 </tr>
