@@ -2,6 +2,7 @@ import './bootstrap';
 import 'bootstrap';
 import 'admin-lte';
 import './modal';
+import './mascara-cpf';
 
 
 import DataTable from 'datatables.net-bs5';
