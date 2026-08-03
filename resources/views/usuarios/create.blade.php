@@ -41,6 +41,7 @@
                          <div class="col-md-6">
                             <x-form.input
                                 name="cpf"
+                                class="cpf"
                                 label="CPF"
                                 placeholder="Digite o CPF"
                                 required

@@ -37,7 +37,7 @@
                                     </td>
                                     <td>{{ $guarda['nome'] }}</td>
                                     <td>{{ $guarda['matricula'] }}</td>
-                                    <td>{{ $guarda['cpf'] }}</td>
+                                    <td class="cpf">{{ $guarda['cpf'] }}</td>
                                     <td>
                                         <x-ui.status-badge :deletado="$guarda['deleted_at']" />
                                     </td>

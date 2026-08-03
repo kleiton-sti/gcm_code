@@ -59,6 +59,7 @@
                                 <div class="col-md-4 mb-3">
                                     <x-form.input
                                         name="cpf"
+                                        class="cpf"
                                         label="CPF"
                                         placeholder="000.000.000-00"
                                         value="{{ old('cpf', $guarda['cpf']) }}"

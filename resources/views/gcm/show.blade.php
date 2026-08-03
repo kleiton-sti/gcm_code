@@ -47,7 +47,7 @@
 
                             <div class="col-md-4 mb-3">
                                 <span class="form-label d-block">CPF</span>
-                                <p class="form-control-plaintext border rounded px-2 mb-0">
+                                <p class="cpf form-control-plaintext border rounded px-2 mb-0">
                                     {{ $guarda['cpf'] }}
                                 </p>
                             </div>
