@@ -1,4 +1,4 @@
-function mascararCPF(cpf) {
+export function mascararCPF(cpf) {
     cpf = String(cpf).replace(/\D/g, "");
 
     cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
@@ -8,6 +8,8 @@ function mascararCPF(cpf) {
     return cpf;
 }
 
+
+export function iniciarMascararCPF() {
 
 // Máscara enquanto digita no input para criar usuário, novo guarda e editar guarda
 document.querySelectorAll("input.cpf").forEach(input => {
@@ -30,3 +32,5 @@ document.querySelectorAll(".cpf").forEach(elemento => {
 document.querySelectorAll(".cpf").forEach(elemento => {
     elemento.textContent = mascararCPF(elemento.textContent);
 });
+
+}

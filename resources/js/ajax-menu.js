@@ -1,3 +1,6 @@
+import { iniciarDataTable } from './datatables.js';
+import { iniciarMascararCPF } from './mascara-cpf.js';
+
 document.querySelectorAll('.menu-ajax').forEach(link => {
     link.addEventListener('click', (e) => {
 
@@ -14,9 +17,19 @@ document.querySelectorAll('.menu-ajax').forEach(link => {
             const conteudoParaAdicionar = htmlDoc.querySelector('.conteudoDaPagina');
            
             document.getElementById('conteudo').innerHTML = conteudoParaAdicionar.innerHTML;
+
+            iniciarDataTable();
+
+            iniciarMascararCPF();
+
         })
         .catch (error => {
             console.log(error);
         })
     })
 })
+
+
+function reaplicarMascaraDatatableAoIniciar() {
+    
+}
