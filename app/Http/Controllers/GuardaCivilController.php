@@ -26,6 +26,7 @@ class GuardaCivilController extends Controller
   {
     try {
       $guardasCivis = $this->guardaCivilService->obterGuardasDoDB();
+
       return view('gcm.index', compact('guardasCivis'));
 
     } catch (\Throwable $e) {

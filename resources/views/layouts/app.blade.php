@@ -63,7 +63,9 @@
                 </div>
             </div>
 
-            @yield('content')
+            <div id="conteudo">
+                @yield('content')
+            </div>
 
         </main>
 

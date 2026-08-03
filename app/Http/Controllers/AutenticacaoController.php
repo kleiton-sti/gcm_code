@@ -14,7 +14,6 @@ class AutenticacaoController extends Controller
     public function realizarLogin(LoginRequest $credenciaisParaLogin)
     {
         try {
-
             if (!Auth::attempt($credenciaisParaLogin->only('email', 'password'))) {
                 return back()
                     ->withInput()
@@ -52,7 +51,7 @@ class AutenticacaoController extends Controller
             $request->session()->regenerateToken();
 
             return redirect()->route('login');
-            
+
         } catch (\Throwable $e) {
             Log::warning('Erro ao realizar logout: ', ['error' => $e->getMessage()]);
             return back()->with('error', 'Ocorreu um erro ao realizar o logout.');

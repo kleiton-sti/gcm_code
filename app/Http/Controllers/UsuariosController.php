@@ -19,7 +19,7 @@ class UsuariosController extends Controller
 
     public function abrirPaginaDeCadastro()
     {
-        return view('cadastro-novos-usuarios');
+        return view('usuarios.create');
     }
 
     public function realizarCadastro(CadastroNovosUsuariosRequest $informacoesDoUsuario)

@@ -17,7 +17,7 @@
 
                 
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link d-flex align-items-center text-white">
+                    <a href="{{ route('home') }}" class="menu-ajax nav-link d-flex align-items-center text-white">
                         <i class="fa-regular fa-address-book"></i>
                         <p class="mb-0">
                             Guardas
@@ -26,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('regsitroGCM') }}" class="nav-link d-flex align-items-center text-white" @cannot('terceirizado-nao-pode') onclick="return confirm('Somente servidores podem registrar GCM')" @endcannot>
+                    <a href="{{ route('regsitroGCM') }}" class="menu-ajax nav-link d-flex align-items-center text-white" @cannot('terceirizado-nao-pode') onclick="return confirm('Somente servidores podem registrar GCM')" @endcannot>
                         <i class="fa-regular fa-id-card"></i>
                         <p class="mb-0">
                             Registro de GCM
@@ -35,7 +35,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('paginaDeCadastro') }}" class="nav-link d-flex align-items-center text-white" @cannot('terceirizado-nao-pode') onclick="return confirm('Somente servidores podem cadastrar usuários')" @endcannot  @cannot('semob-nao-pode') onclick="return confirm('Somente usuários da STII podem cadastrar usuários')" @endcannot>
+                    <a href="{{ route('paginaDeCadastro') }}" class="menu-ajax nav-link d-flex align-items-center text-white" @cannot('terceirizado-nao-pode') onclick="return confirm('Somente servidores podem cadastrar usuários')" @endcannot  @cannot('semob-nao-pode') onclick="return confirm('Somente usuários da STII podem cadastrar usuários')" @endcannot>
                         <i class="fa-regular fa-user"></i>
                         <p class="mb-0">
                             Cadastro de Usuário

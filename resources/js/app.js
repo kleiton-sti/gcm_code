@@ -3,6 +3,7 @@ import 'bootstrap';
 import 'admin-lte';
 import './modal';
 import './mascara-cpf';
+import './ajax-menu';
 
 
 import DataTable from 'datatables.net-bs5';

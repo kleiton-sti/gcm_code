@@ -20,7 +20,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/gcms/{id}', [App\Http\Controllers\GuardaCivilController::class, 'visualizarDadosDoGCM'])->name('get.visualizarGCM');
     
-    Route::get('/usuarios', function () { return view('usuarios.create');})->name('paginaDeCadastro');
+    Route::get('/usuarios', [App\Http\Controllers\UsuariosController::class, 'abrirPaginaDeCadastro'])->name('paginaDeCadastro');
 
     Route::post('/cadastrar/usuario', [App\Http\Controllers\UsuariosController::class, 'realizarCadastro'])->name('post.cadastroUsuario');
 
