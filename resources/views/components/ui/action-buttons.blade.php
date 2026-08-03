@@ -17,7 +17,7 @@
 
 <div class="btn-group" role="group" aria-label="Ações">
 
-    <a href="{{ route('get.visualizarGCM', ['id' => $id]) }}" class="btn btn-sm btn-outline-primary" title="Visualizar">
+    <a href="{{ route('get.visualizarGCM', ['id' => $id]) }}" class="btn btn-sm btn-outline-primary" target="_blank" title="Visualizar">
         <i class="fa-regular fa-eye color-secondary"></i>
     </a>
 

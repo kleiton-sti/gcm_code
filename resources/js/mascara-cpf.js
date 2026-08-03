@@ -34,3 +34,5 @@ document.querySelectorAll(".cpf").forEach(elemento => {
 });
 
 }
+
+iniciarMascararCPF();
