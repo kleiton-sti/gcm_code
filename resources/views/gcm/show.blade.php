@@ -82,7 +82,11 @@
                     <div class="col-sm-4 d-flex justify-content-sm-end justify-content-center">
                         {{-- Espaço reservado para o QR Code de validação (a ser configurado) --}}
                         <div class="credencial-qrcode">
+                            @if ($qrcode)                            
+                            <img src="{{ $qrcode }}" alt="QR Code de validação">
+                            @else
                             <i class="fa-solid fa-qrcode fa-2x"></i>
+                            @endif
                         </div>
                     </div>
                 </div>

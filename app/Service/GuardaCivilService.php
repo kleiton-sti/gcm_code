@@ -33,7 +33,7 @@ class GuardaCivilService
             }
 
             GuardaCivil::create([
-                'token' => Str::uuid(),
+                'token' => hash('sha256', $dadosDoGCM['cpf']),
                 'nome' => $dadosDoGCM['nome'],
                 'matricula' => $dadosDoGCM['matricula'],
                 'cpf' => $dadosDoGCM['cpf'],
@@ -73,7 +73,7 @@ class GuardaCivilService
             }
 
             GuardaCivil::where('id', $id)->update([
-                'token' => Str::uuid(),
+                'token' => hash('sha256', $guarda['cpf']),
                 'nome' => $guarda['nome'],
                 'matricula' => $guarda['matricula'],
                 'cpf' => $guarda['cpf'],

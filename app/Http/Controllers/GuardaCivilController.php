@@ -7,6 +7,7 @@ use App\Http\Requests\InativacaoDeGCMRequest;
 use App\Http\Requests\RegistroDeGCMRequest;
 use App\Models\GuardaCivil;
 use App\Service\GuardaCivilService;
+use chillerlan\QRCode\QRCode;
 use Illuminate\Support\Facades\Log;
 
 
@@ -20,8 +21,6 @@ class GuardaCivilController extends Controller
     $this->guardaCivilService = $guardaCivilService;
   }
 
-
-
   public function encaminharParaIndex()
   {
     try {
@@ -34,7 +33,6 @@ class GuardaCivilController extends Controller
       return redirect()->back()->with('error', 'Ocorreu um erro ao exibir os guardas civis.');
     }
   }
-
 
   public function registrarGCM(RegistroDeGCMRequest $informacoesDoGCM)
   {
@@ -51,16 +49,15 @@ class GuardaCivilController extends Controller
     }
   }
 
-
-  //ações disparadas pelos botõem na lista de guardas civis
-
-
   public function visualizarDadosDoGCM($token)
   {
 
     try {
       $guarda = $this->guardaCivilService->obterGuardaPorTokenComInativos($token);
-      return view('gcm.show', compact('guarda'));
+
+      $qrcode = $this->gerarQrCode($token);
+
+      return view('gcm.show', compact('guarda', 'qrcode'));
 
     } catch (\Throwable $e) {
       Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
@@ -93,7 +90,6 @@ class GuardaCivilController extends Controller
     }
   }
 
-
   public function inativarGCM(InativacaoDeGCMRequest $request, $id)
   {
     try {
@@ -107,6 +103,23 @@ class GuardaCivilController extends Controller
     }
   }
 
+  private function gerarQrCode($token)
+  {
+    try {
+      
+      // $url = config('app.url'). $token;
 
+      $ip = getHostByName(getHostName());
+
+      $url = 'http://' . $ip . '/gcm_code/gcm_code/public/gcms/' . $token;
+
+      $qrcode = (new QRCode())->render($url);
+
+      return $qrcode;
+    } catch (\Throwable $e) {
+      Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
+      return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
+    }
+  }
 
 }
