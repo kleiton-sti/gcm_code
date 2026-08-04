@@ -14,7 +14,10 @@ export function iniciarDataTable() {
     }
 
     dataTable = new DataTable(tabela, {
-        pageLength: 10
+        pageLength: 10,
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json'
+        }
     });
 }
 
