@@ -14,6 +14,7 @@ class GuardasRegistradosSeeder extends Seeder
     {
         GuardaCivil::insert([
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Carlos Eduardo Almeida',
                 'matricula' => 200001,
                 'cpf' => '12345678909',
@@ -21,6 +22,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Fernanda Cristina Souza',
                 'matricula' => 200002,
                 'cpf' => '98765432100',
@@ -29,6 +31,7 @@ class GuardasRegistradosSeeder extends Seeder
                 
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Marcos Vinícius Pereira',
                 'matricula' => 200003,
                 'cpf' => '74185296300',
@@ -36,6 +39,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Patrícia Oliveira Santos',
                 'matricula' => 200004,
                 'cpf' => '36925814700',
@@ -43,6 +47,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Ricardo Henrique Lima',
                 'matricula' => 200005,
                 'cpf' => '25836914700',
@@ -50,6 +55,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Juliana Aparecida Costa',
                 'matricula' => 200006,
                 'cpf' => '11122233396',
@@ -57,6 +63,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Rafael Augusto Martins',
                 'matricula' => 200007,
                 'cpf' => '22233344407',
@@ -64,6 +71,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Camila Regina Ferreira',
                 'matricula' => 200008,
                 'cpf' => '33344455518',
@@ -71,6 +79,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Bruno César Rodrigues',
                 'matricula' => 200009,
                 'cpf' => '44455566629',
@@ -78,6 +87,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Larissa Fernandes Barbosa',
                 'matricula' => 200010,
                 'cpf' => '55566677730',
@@ -85,6 +95,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Thiago Alves Nogueira',
                 'matricula' => 200011,
                 'cpf' => '66677788841',
@@ -92,6 +103,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Vanessa Cristina Ribeiro',
                 'matricula' => 200012,
                 'cpf' => '77788899952',
@@ -99,6 +111,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Diego Fernando Carvalho',
                 'matricula' => 200013,
                 'cpf' => '88899900163',
@@ -106,6 +119,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Priscila Gomes Teixeira',
                 'matricula' => 200014,
                 'cpf' => '99900011274',
@@ -113,6 +127,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Gustavo Henrique Moreira',
                 'matricula' => 200015,
                 'cpf' => '10011122285',
@@ -120,6 +135,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Renata Aparecida Dias',
                 'matricula' => 200016,
                 'cpf' => '21122233396',
@@ -127,6 +143,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Leonardo Souza Cardoso',
                 'matricula' => 200017,
                 'cpf' => '32233344407',
@@ -134,6 +151,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Aline Beatriz Rocha',
                 'matricula' => 200018,
                 'cpf' => '43344455518',
@@ -141,6 +159,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Eduardo Machado Pinto',
                 'matricula' => 200019,
                 'cpf' => '54455566629',
@@ -148,6 +167,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Simone Cristina Araújo',
                 'matricula' => 200020,
                 'cpf' => '65566677730',
@@ -155,6 +175,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Felipe Augusto Correia',
                 'matricula' => 200021,
                 'cpf' => '76677788841',
@@ -162,6 +183,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Débora Regina Monteiro',
                 'matricula' => 200022,
                 'cpf' => '87788899952',
@@ -169,6 +191,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'André Luiz Batista',
                 'matricula' => 200023,
                 'cpf' => '98899900163',
@@ -176,6 +199,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Tatiane Cristina Freitas',
                 'matricula' => 200024,
                 'cpf' => '09900011274',
@@ -183,6 +207,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Vinícius Rodrigues Melo',
                 'matricula' => 200025,
                 'cpf' => '19022133385',
@@ -190,6 +215,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Cristiane Aparecida Nunes',
                 'matricula' => 200026,
                 'cpf' => '29133244496',
@@ -197,6 +223,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Rodrigo César Farias',
                 'matricula' => 200027,
                 'cpf' => '39244355507',
@@ -204,6 +231,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Mariana Luiza Campos',
                 'matricula' => 200028,
                 'cpf' => '49355466618',
@@ -211,6 +239,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Anderson Paulo Vieira',
                 'matricula' => 200029,
                 'cpf' => '59466577729',
@@ -218,6 +247,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Bianca Fernanda Duarte',
                 'matricula' => 200030,
                 'cpf' => '69577688830',
@@ -225,6 +255,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Marcelo Antônio Xavier',
                 'matricula' => 200031,
                 'cpf' => '79688799941',
@@ -232,6 +263,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Suellen Kelly Andrade',
                 'matricula' => 200032,
                 'cpf' => '89799800052',
@@ -239,6 +271,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Wesley Roberto Guimarães',
                 'matricula' => 200033,
                 'cpf' => '99800911163',
@@ -246,6 +279,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Natália Cristina Lopes',
                 'matricula' => 200034,
                 'cpf' => '10911022274',
@@ -253,6 +287,7 @@ class GuardasRegistradosSeeder extends Seeder
                 'motivo_delete' => fake()->sentence(),
             ],
             [
+                'token' => fake()->uuid(),
                 'nome' => 'Everton José da Rosa',
                 'matricula' => 200035,
                 'cpf' => '21022133385',

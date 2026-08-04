@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('guardas_civil', function (Blueprint $table) {
            $table->id();
+           $table->string('token')->unique();
            $table->string('nome');
            $table->string('matricula')->unique();
            $table->string('cpf')->unique();

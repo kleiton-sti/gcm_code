@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Models\GuardaCivil;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 
 
@@ -28,10 +29,11 @@ class GuardaCivilService
             $caminhoFoto = null;
 
             if (isset($dadosDoGCM['foto'])) {
-                $caminhoFoto = $this->guardarArquivoService->guardarArquivo($dadosDoGCM['foto'], 'guardas/fotos');
+                $caminhoFoto = $this->guardarArquivoService->guardarArquivo('guardas/fotos',$dadosDoGCM['foto']);
             }
 
             GuardaCivil::create([
+                'token' => Str::uuid(),
                 'nome' => $dadosDoGCM['nome'],
                 'matricula' => $dadosDoGCM['matricula'],
                 'cpf' => $dadosDoGCM['cpf'],
@@ -71,6 +73,7 @@ class GuardaCivilService
             }
 
             GuardaCivil::where('id', $id)->update([
+                'token' => Str::uuid(),
                 'nome' => $guarda['nome'],
                 'matricula' => $guarda['matricula'],
                 'cpf' => $guarda['cpf'],
@@ -131,7 +134,13 @@ class GuardaCivilService
     }
 
 
-    public function obterGuardaPorIdComInativos(int $id): GuardaCivil
+    public function obterGuardaPorTokenComInativos($token): GuardaCivil
+    {
+        return GuardaCivil::withTrashed()->where('token', $token)
+            ->firstOrFail();
+    }
+
+    public function obterGuardaPorIdComInativos($id): GuardaCivil
     {
         return GuardaCivil::withTrashed()->findOrFail($id);
     }

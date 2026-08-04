@@ -9,7 +9,8 @@ Route::get('/', function () {
 Route::post('/login', [App\Http\Controllers\AutenticacaoController::class, 'realizarLogin'])->name('post.login');
 Route::get('/qrcode', function () {
     return view('layouts.guest'); })->name('qrcode');
-Route::get('/gcms/{id}', [App\Http\Controllers\GuardaCivilController::class, 'visualizarDadosDoGCM'])->name('get.visualizarGCM');
+
+Route::get('/gcms/{token}', [App\Http\Controllers\GuardaCivilController::class, 'visualizarDadosDoGCM'])->name('get.visualizarGCM');
 
 
 Route::middleware(['auth'])->group(function () {

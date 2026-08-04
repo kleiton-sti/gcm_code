@@ -13,6 +13,7 @@ class GuardaCivil extends Model
     protected $table = 'guardas_civil';
 
     protected $fillable = [
+        'token',
         'nome',
         'matricula',
         'cpf',

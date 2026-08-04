@@ -55,11 +55,11 @@ class GuardaCivilController extends Controller
   //ações disparadas pelos botõem na lista de guardas civis
 
 
-  public function visualizarDadosDoGCM($id)
+  public function visualizarDadosDoGCM($token)
   {
 
     try {
-      $guarda = $this->guardaCivilService->obterGuardaPorIdComInativos($id);
+      $guarda = $this->guardaCivilService->obterGuardaPorTokenComInativos($token);
       return view('gcm.show', compact('guarda'));
 
     } catch (\Throwable $e) {
