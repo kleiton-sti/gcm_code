@@ -29,4 +29,14 @@ class GuardaCivil extends Model
             'deleted_at' => 'datetime',
         ];
     }
+
+
+    public function getCpfFormatadoAttribute()
+    {
+        $cpf = preg_replace('/\D/', '', $this->cpf);
+
+        $cpf_formatado = substr($cpf, 0, 3) . '.###.###-' . substr($cpf, -2);
+
+        return $cpf_formatado;
+    }
 }
