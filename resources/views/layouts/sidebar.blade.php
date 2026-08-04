@@ -1,15 +1,9 @@
-
-
 <aside class="app-sidebar bg-dark shadow">
 
     <div class="sidebar-brand">
 
         <a href="{{ route('home') }}" class="brand-link text-white d-flex align-items-center">
-            <img
-                src="{{ asset('img/brasao.png') }}"
-                alt="Brasão da Prefeitura de Caraguatatuba"
-                class="brand-brasao"
-            >
+            <img src="{{ asset('img/brasao.png') }}" alt="Brasão da Prefeitura de Caraguatatuba" class="brand-brasao">
             <span class="brand-text text-white">GCM</span>
         </a>
 
@@ -22,7 +16,7 @@
 
             <ul class="nav sidebar-menu flex-column">
 
-                
+
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="menu-ajax nav-link d-flex align-items-center text-white">
                         <i class="fa-regular fa-address-book"></i>
@@ -33,7 +27,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('regsitroGCM') }}" class="menu-ajax nav-link d-flex align-items-center text-white" @cannot('terceirizado-nao-pode') onclick="return confirm('Somente servidores podem registrar GCM')" @endcannot>
+                    <a href="{{ route('regsitroGCM') }}" class="menu-ajax nav-link d-flex align-items-center text-white"
+                        @cannot('terceirizado-nao-pode')
+                        onclick="return confirm('Somente servidores podem registrar GCM')" @endcannot>
                         <i class="fa-regular fa-id-card"></i>
                         <p class="mb-0">
                             Registro de GCM
@@ -42,7 +38,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('paginaDeCadastro') }}" class="menu-ajax nav-link d-flex align-items-center text-white" @cannot('terceirizado-nao-pode') onclick="return confirm('Somente servidores podem cadastrar usuários')" @endcannot  @cannot('semob-nao-pode') onclick="return confirm('Somente usuários da STII podem cadastrar usuários')" @endcannot>
+                    <a href="{{ route('paginaDeCadastro') }}"
+                        class="menu-ajax nav-link d-flex align-items-center text-white" @cannot('terceirizado-nao-pode')
+                        onclick="return confirm('Somente servidores podem cadastrar usuários')" @endcannot
+                        @cannot('semob-nao-pode')
+                        onclick="return confirm('Somente usuários da STII podem cadastrar usuários')" @endcannot>
                         <i class="fa-regular fa-user"></i>
                         <p class="mb-0">
                             Cadastro de Usuário
@@ -52,7 +52,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('post.logout') }}" class="nav-link d-flex align-items-center text-white">
-                        <i class="fa-regular fa-circle-xmark"></i>
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         <p class="mb-0">
                             Sair
                         </p>
