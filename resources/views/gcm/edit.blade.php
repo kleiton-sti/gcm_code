@@ -15,7 +15,7 @@
         </x-ui.page-header>
         <div class="app-content">
             <div class="container-fluid">
-                <x-ui.card title="Dados do GCM">
+                <x-ui.card title="Dados do GCM" class="gcm-form">
                     <form action="{{ route('post.atualizarGCM', ['id' => $guarda['id']]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -60,7 +60,7 @@
                                     <div class="col-md-4 mb-3">
                                         <span class="form-label d-block">Status</span>
                                         <div>
-                                            <x-ui.status-badge :status="$guarda['status']" />
+                                            <x-ui.status-badge :deletado="$guarda['deleted_at']" />
                                         </div>
                                     </div>
                                 </div>

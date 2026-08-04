@@ -7,7 +7,12 @@
     <div class="card card-outline card-primary">
 
         <div class="card-header text-center border-0 pb-0">
-            <a href="{{ url('/') }}" class="h1 text-decoration-none">
+            <img
+                src="{{ asset('img/brasao.png') }}"
+                alt="Brasão da Prefeitura de Caraguatatuba"
+                class="login-brasao mb-2"
+            >
+            <a href="{{ url('/') }}" class="h1 text-decoration-none d-block">
                 <b>Sistema</b>GCM
             </a>
         </div>

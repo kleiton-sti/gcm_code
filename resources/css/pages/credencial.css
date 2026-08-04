@@ -1,3 +1,5 @@
+/* Estilos da credencial pública do GCM (resources/views/gcm/show.blade.php) */
+
 .credencial-page {
     min-height: 100vh;
     display: flex;

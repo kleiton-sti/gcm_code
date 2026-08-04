@@ -11,7 +11,7 @@
         />
         <div class="app-content">
             <div class="container-fluid">
-                <x-ui.card title="Dados do usuário">
+                <x-ui.card title="Dados do usuário" class="gcm-form">
                     <form action="{{ route('post.cadastroUsuario') }}" method="POST">
                         @csrf
                         <div class="row">

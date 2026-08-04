@@ -1,0 +1,27 @@
+/* Estilos da sidebar (resources/views/layouts/sidebar.blade.php e navbar.blade.php) */
+
+.sidebar-brand .brand-link {
+    gap: .6rem;
+}
+
+.brand-brasao {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.brand-text {
+    color: white;
+    font-weight: 600;
+    letter-spacing: .03em;
+}
+
+/* Quando a sidebar é colapsada, mantém só o brasão visível */
+.sidebar-collapse .brand-text {
+    display: none;
+}
+
+.app-header .nav-link[data-lte-toggle="sidebar"] {
+    cursor: pointer;
+}

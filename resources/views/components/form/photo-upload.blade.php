@@ -22,7 +22,23 @@
         name="{{ $name }}"
         id="{{ $name }}"
         accept="image/*"
-        class="form-control"
+        class="form-control d-none"
         onchange="document.getElementById('{{ $name }}-preview').src = window.URL.createObjectURL(this.files[0])"
     >
+
+    <div class="d-flex justify-content-center gap-2">
+        <label for="{{ $name }}" class="btn btn-outline-primary btn-sm mb-0">
+            <i class="fa-regular fa-image"></i>
+            Enviar foto
+        </label>
+
+        <button
+            type="button"
+            class="btn btn-outline-danger btn-sm"
+            onclick="document.getElementById('{{ $name }}').value = ''; document.getElementById('{{ $name }}-preview').src = '{{ asset('img/usuario-padrao.jpg') }}';"
+        >
+            <i class="fa-regular fa-trash-can"></i>
+            Remover foto
+        </button>
+    </div>
 </div>

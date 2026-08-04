@@ -2,4 +2,8 @@
 @import "bootstrap-icons/font/bootstrap-icons.css";
 @import "overlayscrollbars/styles/overlayscrollbars.css";
 @import "admin-lte/dist/css/adminlte.min.css";
-@import "./gcm-show.css";
+@import "./pages/sidebar.css";
+@import "./pages/login.css";
+@import "./pages/gcm-index.css";
+@import "./pages/gcm-forms.css";
+@import "./pages/credencial.css";

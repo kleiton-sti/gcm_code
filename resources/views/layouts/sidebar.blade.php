@@ -1,9 +1,16 @@
+
+
 <aside class="app-sidebar bg-dark shadow">
 
     <div class="sidebar-brand">
 
-        <a href="{{ url('/') }}" class="brand-link text-white">
-            GCM
+        <a href="{{ route('home') }}" class="brand-link text-white d-flex align-items-center">
+            <img
+                src="{{ asset('img/brasao.png') }}"
+                alt="Brasão da Prefeitura de Caraguatatuba"
+                class="brand-brasao"
+            >
+            <span class="brand-text text-white">GCM</span>
         </a>
 
     </div>

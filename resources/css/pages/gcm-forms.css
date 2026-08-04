@@ -1,0 +1,18 @@
+/* Estilos compartilhados dos formulários (edit.blade.php, registro.blade.php, usuarios/create.blade.php) */
+
+.gcm-form .form-label {
+    font-weight: 600;
+}
+
+.gcm-form hr {
+    opacity: .5;
+}
+
+.gcm-form .btn-primary,
+.gcm-form .btn-secondary {
+    min-width: 130px;
+}
+
+.gcm-form img.rounded-circle {
+    border-width: 3px !important;
+}

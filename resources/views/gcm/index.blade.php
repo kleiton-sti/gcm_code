@@ -10,7 +10,7 @@
             subtitle="Lista de colaboradores cadastrados"
         />
         <div class="app-content">
-            <div class="container-fluid">
+            <div class="container-fluid gcm-index">
                 <x-ui.card title="Guardas cadastrados">
                     <div class="table-responsive">
                         <table id="tabela" class="table table-hover align-middle">
