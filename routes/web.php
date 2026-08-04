@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/gcms/{id}/salvar', [App\Http\Controllers\GuardaCivilController::class, 'atualizarDadosDoGCM'])->name('post.atualizarGCM');
 
-    Route::delete('gcms/{id}/inativar', [App\Http\Controllers\GuardaCivilController::class, 'inativarGCM'])->name('post.inativarGCM');
+    Route::delete('gcms/{id}/inativar', [App\Http\Controllers\GuardaCivilController::class, 'inativarGCM'])->name('delete.inativarGCM');
 });
 
 

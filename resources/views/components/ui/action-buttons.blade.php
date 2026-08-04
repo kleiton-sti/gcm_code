@@ -46,6 +46,7 @@
         data-bs-toggle="modal"
         data-bs-target="#modalInativarGCM"
         data-id="{{ $id }}"
+        data-url="{{ route('delete.inativarGCM', ['id' => $id]) }}"
         data-nome="{{ $nome }}"
     >
         <i class="fa-regular fa-trash-can color-danger"></i>

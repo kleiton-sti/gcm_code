@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nome = botao.dataset.nome;
 
         const form = document.getElementById('formInativarGCM');
-        form.action = `gcms/${id}/inativar`;
+        form.action = botao.dataset.url;
 
         document.getElementById('modalInativarNome').textContent = nome;
 
