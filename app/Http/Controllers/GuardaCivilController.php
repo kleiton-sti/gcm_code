@@ -119,7 +119,7 @@ class GuardaCivilController extends Controller
      $dompdf = new Dompdf($options);
      $html = view('gcm.print', compact('guardasCivisAtivos'))->render();
      $dompdf->loadHtml($html, 'UTF-8');
-     $dompdf->setPaper('A4', 'landscape');
+     $dompdf->setPaper('A4', 'portrait');
      $dompdf->render();
 
      $filename = 'guardas_civis' . now()->format('Ymd_His') . '.pdf';
@@ -131,7 +131,7 @@ class GuardaCivilController extends Controller
     }
   }
 
-  
+
 
   private function gerarQrCode($token)
   {
