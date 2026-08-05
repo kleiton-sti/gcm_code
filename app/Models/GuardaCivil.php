@@ -35,7 +35,7 @@ class GuardaCivil extends Model
     {
         $cpf = preg_replace('/\D/', '', $this->cpf);
 
-        $cpf_formatado = substr($cpf, 0, 3) . '.###.###-' . substr($cpf, -2);
+        $cpf_formatado = substr($cpf, 0, 3) . '.***.***-' . substr($cpf, -2);
 
         return $cpf_formatado;
     }

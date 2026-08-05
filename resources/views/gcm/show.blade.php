@@ -60,7 +60,7 @@
 
                             <div class="col-6 mb-3">
                                 <span class="form-label d-block">CPF</span>
-                                <p class="cpf mb-0">
+                                <p class="mb-0">
                                     {{ $guarda->cpf_formatado }}
                                 </p>
                             </div>
