@@ -6,10 +6,20 @@ import './ajax-menu';
 import './modal';
 import './mascara-cpf';
 
-import '../css/pages/sidebar.css';
-import '../css/pages/login.css';
-import '../css/pages/gcm-index.css';
-import '../css/pages/gcm-forms.css';
-import '../css/pages/credencial.css';
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnFullscreen = document.getElementById('btnFullscreen');
+
+    btnFullscreen.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    });
+});
+
+
+
 
 

@@ -33,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/gcms/{id}/salvar', [App\Http\Controllers\GuardaCivilController::class, 'atualizarDadosDoGCM'])->name('post.atualizarGCM');
 
     Route::delete('gcms/{id}/inativar', [App\Http\Controllers\GuardaCivilController::class, 'inativarGCM'])->name('delete.inativarGCM');
+
+    Route::get('gcms/gerar/pdf', [App\Http\Controllers\GuardaCivilController::class, 'gerarPDFparaImprimir'])->name('get.gerarPDF');
 });
 
 

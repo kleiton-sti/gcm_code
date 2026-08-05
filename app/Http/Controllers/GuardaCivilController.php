@@ -8,6 +8,8 @@ use App\Http\Requests\RegistroDeGCMRequest;
 use App\Models\GuardaCivil;
 use App\Service\GuardaCivilService;
 use chillerlan\QRCode\QRCode;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Support\Facades\Log;
 
 
@@ -103,6 +105,34 @@ class GuardaCivilController extends Controller
     }
   }
 
+  public function gerarPDFparaImprimir()
+  {
+    try {
+     $guardasCivisAtivos = GuardaCivil::all();
+
+     $options = new Options();
+     $options->set('isHtml5ParserEnabled', true);
+     $options->set('isRemoteEnabled', true);
+     $options->set('defaultFont', 'Arial');
+     $options->set('chroot', public_path());
+
+     $dompdf = new Dompdf($options);
+     $html = view('gcm.print', compact('guardasCivisAtivos'))->render();
+     $dompdf->loadHtml($html, 'UTF-8');
+     $dompdf->setPaper('A4', 'landscape');
+     $dompdf->render();
+
+     $filename = 'guardas_civis' . now()->format('Ymd_His') . '.pdf';
+     $dompdf->stream($filename, ['Attachment' => 0]);
+
+    } catch (\Throwable $e) {
+      Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
+      return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
+    }
+  }
+
+  
+
   private function gerarQrCode($token)
   {
     try {
@@ -121,5 +151,6 @@ class GuardaCivilController extends Controller
       return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
     }
   }
+
 
 }
