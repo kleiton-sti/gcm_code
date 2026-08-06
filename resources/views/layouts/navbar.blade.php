@@ -14,9 +14,9 @@
 
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="{{ route('get.gerarPDF')}}" class="nav-link" target="_blank"
-                    aria-label="Gerar PDF de lista de GCM para impressão">
-                    <i class="fa-solid fa-print mr-2" aria-hidden="true"></i>
+                <a href="{{ route('get.baixarQrCode')}}" class="nav-link"
+                    aria-label="Baixar pasta de QrCodes" text="Download">
+                    <i class="fa-solid fa-download mr-2" aria-hidden="true"></i>
                 </a>
             </li>
 

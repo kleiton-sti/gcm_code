@@ -133,6 +133,11 @@ class GuardaCivilService
             ->get();
     }
 
+        public function obterGuardasAtivosDoDB()
+    {
+        return GuardaCivil::orderBy('nome')
+            ->get();
+    }
 
     public function obterGuardaPorTokenComInativos($token): GuardaCivil
     {

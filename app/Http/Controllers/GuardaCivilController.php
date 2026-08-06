@@ -6,12 +6,9 @@ use App\Helpers\QrCodeHelper;
 use App\Http\Requests\AtualizarRegistroGCMRequest;
 use App\Http\Requests\InativacaoDeGCMRequest;
 use App\Http\Requests\RegistroDeGCMRequest;
-use App\Models\GuardaCivil;
 use App\Service\GuardaCivilService;
-use chillerlan\QRCode\QRCode;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 use Illuminate\Support\Facades\Log;
+use ZipArchive;
 
 
 class GuardaCivilController extends Controller
@@ -106,29 +103,52 @@ class GuardaCivilController extends Controller
     }
   }
 
-  public function gerarPDFparaImprimir()
+  public function baixarQrCode()
   {
     try {
-     $guardasCivisAtivos = GuardaCivil::all();
 
-     $options = new Options();
-     $options->set('isHtml5ParserEnabled', true);
-     $options->set('isRemoteEnabled', true);
-     $options->set('defaultFont', 'Arial');
-     $options->set('chroot', public_path());
-
-     $dompdf = new Dompdf($options);
-     $html = view('gcm.print', compact('guardasCivisAtivos'))->render();
-     $dompdf->loadHtml($html, 'UTF-8');
-     $dompdf->setPaper('A4', 'portrait');
-     $dompdf->render();
-
-     $filename = 'guardas_civis' . now()->format('Ymd_His') . '.pdf';
-     $dompdf->stream($filename, ['Attachment' => 0]);
+      $this->ziparQrCodes();
+      return response()->download(storage_path('app/public/storage/qrcodes.zip'), 'qrcodes.zip')
+        ->deleteFileAfterSend(true);
 
     } catch (\Throwable $e) {
       Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
-      return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
+      return redirect()->back()->with('error', 'Ocorreu um erro ao tentar baixar os qrcodes.');
+    }
+  }
+
+  private function ziparQrCodes()
+  {
+    try {
+      $guardasCivis = $this->guardaCivilService->obterGuardasAtivosDoDB();
+      dd($guardasCivis);
+
+      $zip = new ZipArchive();
+      $zipPath = storage_path('app/public/storage/qrcodes.zip');
+
+      if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
+        throw new \Exception('Não foi possível criar o arquivo zip.');
+      }
+
+
+      foreach ($guardasCivis as $guardaCivil) {
+        $qrcode = QrCodeHelper::gerarQrCode($guardaCivil->token);
+        $imgQrCodeSemPrefix = preg_replace(
+          '#^data:image/\w+;base64,#i',
+          '',
+          $qrcode
+        );
+
+        $imgConvertida = base64_decode($imgQrCodeSemPrefix);
+
+        $zip->addFromString("qrcodes_{$guardaCivil->nome}.png", $imgConvertida);
+      }
+
+      $zip->close();
+
+    } catch (\Throwable $e) {
+      Log::warning('Erro ao gerar arquivo zip: ', ['error' => $e->getMessage()]);
+      return redirect()->back()->with('error', 'Ocorreu um erro ao tentar baixar o arquivo.');
     }
   }
 
