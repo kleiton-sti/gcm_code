@@ -43,7 +43,7 @@
                         </td>
                         <td class="cracha-qrcode"
                         
-                                <img src="{{ route('get.qrcode', ['token' => $guarda->token]) }}" alt="QR Code de validação de {{ $guarda->nome }}">
+                                <img src="{{  \App\Helpers\QrCodeHelper::gerarQrCode($guarda->token)  }}" alt="QR Code de validação de {{ $guarda->nome }}">
                         </td>
                     </tr>
                 </table>

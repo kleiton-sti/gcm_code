@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\QrCodeHelper;
 use App\Http\Requests\AtualizarRegistroGCMRequest;
 use App\Http\Requests\InativacaoDeGCMRequest;
 use App\Http\Requests\RegistroDeGCMRequest;
@@ -57,7 +58,7 @@ class GuardaCivilController extends Controller
     try {
       $guarda = $this->guardaCivilService->obterGuardaPorTokenComInativos($token);
 
-      $qrcode = $this->gerarQrCode($token);
+      $qrcode = QrCodeHelper::gerarQrCode($token);
 
       return view('gcm.show', compact('guarda', 'qrcode'));
 
@@ -130,28 +131,5 @@ class GuardaCivilController extends Controller
       return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
     }
   }
-
-
-
-  public function gerarQrCode($token)
-  {
-    try {
-      
-      // $url = config('app.url'). $token;
-
-      $ip = getHostByName(getHostName());
-
-      $url = 'http://' . $ip . '/gcm_code/gcm_code/public/gcms/' . $token;
-
-      $qrcode = (new QRCode())->render($url);
-      dd($qrcode);
-
-      return $qrcode;
-    } catch (\Throwable $e) {
-      Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
-      return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
-    }
-  }
-
 
 }
