@@ -108,12 +108,12 @@ class GuardaCivilController extends Controller
     try {
 
       $this->ziparQrCodes();
-      return response()->download(storage_path('app/public/storage/qrcodes.zip'), 'qrcodes.zip')
+      return response()->download(public_path('storage/qrcodes.zip'), 'qrcodes.zip')
         ->deleteFileAfterSend(true);
 
     } catch (\Throwable $e) {
       Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
-      return redirect()->back()->with('error', 'Ocorreu um erro ao tentar baixar os qrcodes.');
+      return redirect()->back()->with('error', 'Ocorreu um erro ao tentar baixar arquivo.');
     }
   }
 
@@ -121,10 +121,10 @@ class GuardaCivilController extends Controller
   {
     try {
       $guardasCivis = $this->guardaCivilService->obterGuardasAtivosDoDB();
-      dd($guardasCivis);
+    
 
       $zip = new ZipArchive();
-      $zipPath = storage_path('app/public/storage/qrcodes.zip');
+      $zipPath = public_path('storage/qrcodes.zip');
 
       if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
         throw new \Exception('Não foi possível criar o arquivo zip.');
@@ -141,7 +141,7 @@ class GuardaCivilController extends Controller
 
         $imgConvertida = base64_decode($imgQrCodeSemPrefix);
 
-        $zip->addFromString("qrcodes_{$guardaCivil->nome}.png", $imgConvertida);
+        $zip->addFromString("qrcode_{$guardaCivil->nome}.png", $imgConvertida);
       }
 
       $zip->close();
