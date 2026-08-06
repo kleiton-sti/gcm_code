@@ -114,9 +114,6 @@ class GuardaCivilService
 
             DB::commit();
 
-            if ($caminhoFoto != null)
-                $this->guardarArquivoService->excluirArquivo($caminhoFoto);
-
             Log::info('Guarda Civil excluido com sucesso.');
 
         } catch (\Exception $e) {

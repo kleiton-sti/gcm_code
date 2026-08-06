@@ -117,6 +117,8 @@ class GuardaCivilController extends Controller
     }
   }
 
+  
+
   private function ziparQrCodes()
   {
     try {
