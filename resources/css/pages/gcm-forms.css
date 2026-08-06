@@ -16,3 +16,83 @@
 .gcm-form img.rounded-circle {
     border-width: 3px !important;
 }
+
+/* Padronização herdada de formulario-ripd.css (projeto de referência) */
+
+.gcm-form.card-outline {
+    border-left: 4px solid;
+}
+
+.gcm-form.card-outline.card-primary {
+    border-left-color: var(--bs-primary);
+}
+
+.gcm-form.card-outline.card-info {
+    border-left-color: var(--bs-info);
+}
+
+.gcm-form.card-outline.card-success {
+    border-left-color: var(--bs-success);
+}
+
+.gcm-form.card-outline.card-warning {
+    border-left-color: var(--bs-warning);
+}
+
+.gcm-form.card-outline.card-danger {
+    border-left-color: var(--bs-danger);
+}
+
+.gcm-form.card-outline.card-secondary {
+    border-left-color: var(--bs-secondary);
+}
+
+.gcm-form .card-header {
+    font-weight: 600;
+}
+
+.gcm-form label i {
+    color: var(--bs-secondary-color);
+    margin-right: 5px;
+}
+
+.gcm-form textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.gcm-form select.form-select {
+    cursor: pointer;
+}
+
+.gcm-form .form-text.text-muted {
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+.gcm-form .is-invalid {
+    border-color: var(--bs-danger);
+}
+
+.gcm-form .invalid-feedback {
+    display: block;
+    color: var(--bs-danger);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.gcm-form.card-outline:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .gcm-form .card-header h3.card-title {
+        font-size: 1.1rem;
+    }
+
+    .gcm-form .d-flex.justify-content-end .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

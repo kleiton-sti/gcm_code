@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crachás - Guarda Civil Municipal</title>
-    <link rel="stylesheet" href="{{ Vite::asset('resources/css/gcm-print.css') }}" media="print">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/pages/gcm-print.css') }}" media="print">
     
    
 </head>
