@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crachás - Guarda Civil Municipal</title>
-    <link rel="stylesheet" href="{{ Vite::asset('resources/css/pages/gcm-print.css') }}" media="print">
-    
-   
+    <style>
+        {!! file_get_contents(resource_path('css/pages/gcm-print.css')) !!}
+    </style>
 </head>
 
 <body>
@@ -19,19 +19,7 @@
 
     <div class="folha-crachas">
         @forelse ($guardasCivisAtivos as $guarda)
-            @php
-                // Geração do QR Code individual do guarda (mesmo padrão usado em gcm.show)
-                $qrcodeCracha = null;
-                try {
-                    $ip = getHostByName(getHostName());
-                    $urlCracha = 'http://' . $ip . '/gcm_code/gcm_code/public/gcms/' . $guarda->token;
-                    $qrcodeCracha = (new \chillerlan\QRCode\QRCode())->render($urlCracha);
-                } catch (\Throwable $e) {
-                    $qrcodeCracha = null;
-                }
-            @endphp
 
-            {{-- Cada crachá é uma unidade recortável e individualmente identificável (id = token do guarda) --}}
             <div class="cracha" id="cracha-{{ $guarda->token }}" data-guarda-id="{{ $guarda->id }}"
                 data-guarda-token="{{ $guarda->token }}">
                 <span class="marca-corte tl"></span>
@@ -53,13 +41,9 @@
                             <span class="rotulo">Matrícula</span>
                             <span class="valor">{{ $guarda->matricula }}</span>
                         </td>
-                        <td class="cracha-qrcode">
-                            {{-- Espaço reservado para o QR Code, também utilizável para download/recorte individual --}}
-                            @if ($qrcodeCracha)
-                                <img src="{{ $qrcodeCracha }}" alt="QR Code de validação de {{ $guarda->nome }}">
-                            @else
-                                <span class="qrcode-vazio">QR Code</span>
-                            @endif
+                        <td class="cracha-qrcode"
+                        
+                                <img src="{{ route('get.qrcode', ['token' => $guarda->token]) }}" alt="QR Code de validação de {{ $guarda->nome }}">
                         </td>
                     </tr>
                 </table>
@@ -70,21 +54,6 @@
             <p class="sem-registros">Nenhum guarda civil ativo encontrado.</p>
         @endforelse
     </div>
-
-    <footer>
-        <table class="footer-table">
-            <tr>
-                <td class="left">
-                    <strong>Impresso por:</strong> {{ Auth::user()->nome }}
-                    &nbsp;|&nbsp;
-                    {{ now()->format('d/m/Y H:i') }}
-                </td>
-                <td class="right">
-                    <span class="page-counter"></span>
-                </td>
-            </tr>
-        </table>
-    </footer>
 
 </body>
 

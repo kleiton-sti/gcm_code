@@ -1,5 +1,13 @@
 /* Estilos da sidebar (resources/views/layouts/sidebar.blade.php e navbar.blade.php) */
 
+.app-sidebar.bg-dark {
+    background-color: #1a1a2e !important;
+}
+
+.sidebar-brand {
+    border: none;
+}
+
 .sidebar-brand .brand-link {
     gap: .6rem;
 }
@@ -24,4 +32,39 @@
 
 .app-header .nav-link[data-lte-toggle="sidebar"] {
     cursor: pointer;
+}
+
+.sidebar-user-box {
+    margin: 0 .75rem 1rem;
+    padding: .65rem .75rem;
+    background-color: rgba(255, 255, 255, .08);
+    border-radius: .5rem;
+    gap: .65rem;
+}
+
+.sidebar-user-avatar {
+    font-size: 1.9rem;
+    line-height: 1;
+    color: #7c8fe0;
+}
+
+.sidebar-user-nome {
+    color: #fff;
+    font-weight: 600;
+    font-size: .85rem;
+}
+
+.sidebar-user-email {
+    color: rgba(255, 255, 255, .55);
+    font-size: .72rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 170px;
+}
+
+.sidebar-menu .nav-link.active,
+.sidebar-menu .nav-link:hover {
+    background-color: rgba(124, 143, 224, .18);
+    border-radius: .375rem;
 }

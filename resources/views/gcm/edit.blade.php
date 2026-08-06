@@ -15,7 +15,13 @@
         </x-ui.page-header>
         <div class="app-content">
             <div class="container-fluid">
-                <x-ui.card title="Dados do GCM" class="gcm-form">
+                <x-ui.card class="gcm-form card-realce card-realce-warning">
+                    <x-slot:header>
+                        <h3 class="card-title mb-0">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            Dados do GCM
+                        </h3>
+                    </x-slot:header>
                     <form action="{{ route('post.atualizarGCM', ['id' => $guarda['id']]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

@@ -133,7 +133,7 @@ class GuardaCivilController extends Controller
 
 
 
-  private function gerarQrCode($token)
+  public function gerarQrCode($token)
   {
     try {
       
@@ -144,6 +144,7 @@ class GuardaCivilController extends Controller
       $url = 'http://' . $ip . '/gcm_code/gcm_code/public/gcms/' . $token;
 
       $qrcode = (new QRCode())->render($url);
+      dd($qrcode);
 
       return $qrcode;
     } catch (\Throwable $e) {

@@ -38,3 +38,48 @@
     white-space: normal;
     text-align: center;
 }
+
+.gcm-index .card-realce {
+    border-left: 4px solid;
+}
+
+.gcm-index .card-realce.card-realce-primary {
+    border-left-color: var(--bs-primary);
+}
+
+.gcm-index .card-realce.card-realce-info {
+    border-left-color: var(--bs-info);
+}
+
+.gcm-index .card-header {
+    font-weight: 600;
+}
+
+/* Estilo geral da tabela (linhas, cabeçalho e espaçamento) inspirado na referência */
+
+.gcm-index .table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.gcm-index .table thead th {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 2px solid var(--bs-border-color);
+}
+
+.gcm-index .table tbody td {
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.gcm-index .table tbody tr:last-child td {
+    border-bottom: none;
+}

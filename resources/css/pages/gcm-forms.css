@@ -19,31 +19,31 @@
 
 /* Padronização herdada de formulario-ripd.css (projeto de referência) */
 
-.gcm-form.card-outline {
+.gcm-form.card-realce {
     border-left: 4px solid;
 }
 
-.gcm-form.card-outline.card-primary {
+.gcm-form.card-realce.card-realce-primary {
     border-left-color: var(--bs-primary);
 }
 
-.gcm-form.card-outline.card-info {
+.gcm-form.card-realce.card-realce-info {
     border-left-color: var(--bs-info);
 }
 
-.gcm-form.card-outline.card-success {
+.gcm-form.card-realce.card-realce-success {
     border-left-color: var(--bs-success);
 }
 
-.gcm-form.card-outline.card-warning {
+.gcm-form.card-realce.card-realce-warning {
     border-left-color: var(--bs-warning);
 }
 
-.gcm-form.card-outline.card-danger {
+.gcm-form.card-realce.card-realce-danger {
     border-left-color: var(--bs-danger);
 }
 
-.gcm-form.card-outline.card-secondary {
+.gcm-form.card-realce.card-realce-secondary {
     border-left-color: var(--bs-secondary);
 }
 
@@ -81,7 +81,7 @@
     margin-top: 0.25rem;
 }
 
-.gcm-form.card-outline:hover {
+.gcm-form.card-realce:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
 }

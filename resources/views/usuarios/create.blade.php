@@ -11,7 +11,13 @@
         />
         <div class="app-content">
             <div class="container-fluid">
-                <x-ui.card title="Dados do usuário" class="gcm-form">
+                <x-ui.card class="gcm-form card-realce card-realce-info">
+                    <x-slot:header>
+                        <h3 class="card-title mb-0">
+                            <i class="fa-regular fa-user"></i>
+                            Dados do usuário
+                        </h3>
+                    </x-slot:header>
                     <form action="{{ route('post.cadastroUsuario') }}" method="POST">
                         @csrf
                         <div class="row">

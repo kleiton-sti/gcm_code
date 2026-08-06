@@ -11,7 +11,13 @@
         />
         <div class="app-content">
             <div class="container-fluid gcm-index">
-                <x-ui.card title="Guardas cadastrados">
+                <x-ui.card class="card-realce card-realce-primary">
+                    <x-slot:header>
+                        <h3 class="card-title mb-0">
+                            <i class="fa-regular fa-address-book"></i>
+                            Guardas cadastrados
+                        </h3>
+                    </x-slot:header>
                     <div class="table-responsive">
                         <table id="tabela" class="table table-hover align-middle">
                             <thead>

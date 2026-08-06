@@ -35,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('gcms/{id}/inativar', [App\Http\Controllers\GuardaCivilController::class, 'inativarGCM'])->name('delete.inativarGCM');
 
     Route::get('gcms/gerar/pdf', [App\Http\Controllers\GuardaCivilController::class, 'gerarPDFparaImprimir'])->name('get.gerarPDF');
+
+    Route::get('/qrcode/{token}', [App\Http\Controllers\GuardaCivilController::class, 'gerarQrCode'])->name('get.qrcode');
 });
 
 

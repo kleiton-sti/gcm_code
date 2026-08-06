@@ -9,6 +9,16 @@
 
     </div>
 
+    <div class="sidebar-user-box d-flex align-items-center">
+        <div class="sidebar-user-avatar">
+            <i class="fa-solid fa-circle-user"></i>
+        </div>
+        <div class="sidebar-user-info">
+            <p class="sidebar-user-nome mb-0">{{ Auth::user()->nome }}</p>
+            <p class="sidebar-user-email mb-0">{{ Auth::user()->email }}</p>
+        </div>
+    </div>
+
 
     <div class="sidebar-wrapper">
 
