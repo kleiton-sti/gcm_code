@@ -24,7 +24,7 @@ class GuardaCivilService
     }
 
 
-    public function CriarGuardaEmDB($dadosDoGCM)
+    public function criarGuardaEmDB($dadosDoGCM)
     {
         try {
             $caminhoFoto = null;
@@ -69,7 +69,7 @@ class GuardaCivilService
                 request()->ip(),
                 'Tentativa de registro de Guarda Civil',
                 json_encode($dadosDoGCM),
-                $NovoRegistro->id
+                $NovoRegistro->id ?? null
             );
 
             $this->auditoriaService->registrarAcao($dto);
@@ -123,7 +123,7 @@ class GuardaCivilService
                 request()->ip(),
                 'Tentativa de atualização de Guarda Civil',
                 json_encode($guarda),
-                $id
+                $dadosAnteriorDoGCM->id ?? null
             );
 
             $this->auditoriaService->registrarAcao($dto);
@@ -163,8 +163,8 @@ class GuardaCivilService
                 auth()->user()->nome,
                 request()->ip(),
                 'Tentativa de exclusão de Guarda Civil',
-                $motivo,
-                $id
+                json_encode($guarda),
+                $id ?? null
             );
 
             $this->auditoriaService->registrarAcao($dto);

@@ -39,7 +39,7 @@ class GuardaCivilController extends Controller
   {
     try {
       $dados = $informacoesDoGCM->validated();
-      $this->guardaCivilService->CriarGuardaEmDB($dados);
+      $this->guardaCivilService->criarGuardaEmDB($dados);
       Log::info(Auth::user()->nome . ' registrou o GCM ' . $dados['nome']);
       return redirect()->route('regsitroGCM')->with('success', 'Guarda Civil cadastrado com sucesso.');
 

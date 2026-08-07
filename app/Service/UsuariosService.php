@@ -23,7 +23,7 @@ class UsuariosService
             $statusDaOperacao = 'falha';
             DB::beginTransaction();
 
-            User::create([
+            $novoUsuario = User::create([
                 'nome' => $informacoesDoUsuario['nome'],
                 'matricula' => $informacoesDoUsuario['matricula'],
                 'email' => $informacoesDoUsuario['email'],
@@ -49,7 +49,7 @@ class UsuariosService
                 request()->ip(),
                 'Tentou cadastrar um novo usuário',
                 json_encode($informacoesDoUsuario),
-                null
+                $novoUsuario->id ?? null
             );
 
             $this->auditoriaService->registrarAcao($dto);
