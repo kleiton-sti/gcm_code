@@ -56,7 +56,6 @@ class GuardaCivilService
         }
     }
 
-
     public function atualizarGuardaEmDB($guarda, $id)
     {
         try {
@@ -68,7 +67,7 @@ class GuardaCivilService
 
 
             if (isset($guarda['foto']) && $guarda['foto'] != $dadosAnteriorDoGCM->first()->caminho_foto) {
-                $this->guardarArquivoService->excluirArquivo($dadosAnteriorDoGCM->first()->caminho_foto);
+                $this->guardarArquivoService->excluirArquivo($dadosAnteriorDoGCM->caminho_foto);
                 $caminhoFoto = $this->guardarArquivoService->guardarArquivo('guardas/fotos', $guarda['foto']);
             }
 
@@ -77,7 +76,7 @@ class GuardaCivilService
                 'nome' => $guarda['nome'],
                 'matricula' => $guarda['matricula'],
                 'cpf' => $guarda['cpf'],
-                'caminho_foto' => $caminhoFoto,
+                'caminho_foto' => $caminhoFoto ?? $dadosAnteriorDoGCM->caminho_foto,
             ]);
 
             DB::commit();
@@ -95,7 +94,6 @@ class GuardaCivilService
             throw $e;
         }
     }
-
 
     public function excluirGuardaEmDB($motivo, $id)
     {

@@ -7,6 +7,7 @@ use App\Http\Requests\AtualizarRegistroGCMRequest;
 use App\Http\Requests\InativacaoDeGCMRequest;
 use App\Http\Requests\RegistroDeGCMRequest;
 use App\Service\GuardaCivilService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use ZipArchive;
 
@@ -39,6 +40,7 @@ class GuardaCivilController extends Controller
     try {
       $dados = $informacoesDoGCM->validated();
       $this->guardaCivilService->CriarGuardaEmDB($dados);
+      Log::info(Auth::user()->nome . ' registrou o GCM ' . $dados['nome']);
       return redirect()->route('regsitroGCM')->with('success', 'Guarda Civil cadastrado com sucesso.');
 
     } catch (\Throwable $e) {
@@ -82,6 +84,7 @@ class GuardaCivilController extends Controller
     try {
       $guarda = $informacoesDoGCM->validated();
       $this->guardaCivilService->atualizarGuardaEmDB($guarda, $id);
+      Log::info(Auth::user()->nome . ' atualizou o GCM ' . $guarda['nome']);
       return redirect()->route('home')->with('success', 'Guarda Civil atualizado com sucesso.');
 
     } catch (\Throwable $e) {
@@ -95,6 +98,7 @@ class GuardaCivilController extends Controller
     try {
       $motivo = $request->validated()['motivo_delete'];
       $this->guardaCivilService->excluirGuardaEmDB($motivo, $id);
+      Log::info(Auth::user()->nome . ' inativou o GCM ' . $id);
       return redirect()->route('home')->with('success', 'Guarda Civil excluido com sucesso.');
 
     } catch (\Throwable $e) {

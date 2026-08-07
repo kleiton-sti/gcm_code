@@ -23,7 +23,6 @@ class GuardarArquivoService
         }
     }
  
-
     public function excluirArquivo($caminho)
     {
         try {

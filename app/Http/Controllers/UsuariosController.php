@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CadastroNovosUsuariosRequest;
-use App\Http\Requests\LoginRequest;
 use App\Service\UsuariosService;
 use Illuminate\Support\Facades\Log;
 
@@ -15,7 +14,6 @@ class UsuariosController extends Controller
     {
         $this->usuariosService = $usuariosService;
     }
-
 
     public function abrirPaginaDeCadastro()
     {

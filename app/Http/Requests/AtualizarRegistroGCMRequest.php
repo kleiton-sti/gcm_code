@@ -27,7 +27,7 @@ class AtualizarRegistroGCMRequest extends FormRequest
             'nome' => ['required', 'string', 'min:5', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
             'matricula' => ['required','string', 'max:10', 'regex:/^\d+$/'],
             'cpf' => ['required','string', 'max:11', new ValidadorDeCpf()],
-            'foto' => ['image', 'mimes:jpeg,png,jpg', 'max:10240'],
+            'foto' => ['image', 'mimes:jpeg,png,jpg', 'max:10240', 'sometimes'],
         ];
     }
 
