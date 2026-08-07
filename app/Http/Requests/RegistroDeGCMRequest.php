@@ -22,7 +22,6 @@ class RegistroDeGCMRequest extends FormRequest
         ]);
     }
 
-    
     public function rules(): array
     {
         
@@ -34,7 +33,6 @@ class RegistroDeGCMRequest extends FormRequest
         ];
          
     }
-
 
     public function messages() {
         return [
