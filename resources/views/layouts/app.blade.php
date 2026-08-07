@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
     ])
 </head>
 
-<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+<body>
 
     <div class="app-wrapper">
 
