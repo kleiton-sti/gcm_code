@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\DTO\AuditoriaDTO;
 use App\Models\GuardaCivil;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -14,25 +15,28 @@ class GuardaCivilService
 {
 
     private $guardarArquivoService;
+    private $auditoriaService;
 
-    public function __construct(GuardarArquivoService $guardarArquivoService)
+    public function __construct(GuardarArquivoService $guardarArquivoService, AuditoriaService $auditoriaService)
     {
         $this->guardarArquivoService = $guardarArquivoService;
+        $this->auditoriaService = $auditoriaService;
     }
 
 
     public function CriarGuardaEmDB($dadosDoGCM)
     {
         try {
+            $caminhoFoto = null;
+            $statusDaOperacao = 'falha';
+
             DB::beginTransaction();
 
-            $caminhoFoto = null;
-
             if (isset($dadosDoGCM['foto'])) {
-                $caminhoFoto = $this->guardarArquivoService->guardarArquivo('guardas/fotos',$dadosDoGCM['foto']);
+                $caminhoFoto = $this->guardarArquivoService->guardarArquivo('guardas/fotos', $dadosDoGCM['foto']);
             }
 
-            GuardaCivil::create([
+            $NovoRegistro = GuardaCivil::create([
                 'token' => hash('sha256', $dadosDoGCM['cpf']),
                 'nome' => $dadosDoGCM['nome'],
                 'matricula' => $dadosDoGCM['matricula'],
@@ -42,9 +46,11 @@ class GuardaCivilService
 
             DB::commit();
 
+            $statusDaOperacao = 'sucesso';
             Log::info('Guarda Civil criado com sucesso.');
 
-        } catch (\Exception $e) {
+        } 
+        catch (\Exception $e) {
             Log::error('Erro ao criar guarda civil em Banco de Dados: ' . $e->getMessage());
 
             if ($caminhoFoto) {
@@ -53,15 +59,30 @@ class GuardaCivilService
 
             DB::rollBack();
             throw $e;
+
+        } 
+        finally {
+            
+            $dto = new AuditoriaDTO(
+                $statusDaOperacao,
+                auth()->user()->nome,
+                request()->ip(),
+                'Tentativa de registro de Guarda Civil',
+                json_encode($dadosDoGCM),
+                $NovoRegistro->id
+            );
+
+            $this->auditoriaService->registrarAcao($dto);
         }
     }
 
     public function atualizarGuardaEmDB($guarda, $id)
     {
         try {
-            DB::beginTransaction();
-
             $caminhoFoto = null;
+            $statusDaOperacao = 'falha';
+
+            DB::beginTransaction();
 
             $dadosAnteriorDoGCM = GuardaCivil::findOrFail($id);
 
@@ -80,7 +101,8 @@ class GuardaCivilService
             ]);
 
             DB::commit();
-
+            
+            $statusDaOperacao = 'sucesso';
             Log::info('Guarda Civil atualizado com sucesso.');
 
         } catch (\Exception $e) {
@@ -93,12 +115,25 @@ class GuardaCivilService
             DB::rollBack();
             throw $e;
         }
+        finally {
+
+            $dto = new AuditoriaDTO(
+                $statusDaOperacao,
+                auth()->user()->nome,
+                request()->ip(),
+                'Tentativa de atualização de Guarda Civil',
+                json_encode($guarda),
+                $id
+            );
+
+            $this->auditoriaService->registrarAcao($dto);
+        }
     }
 
     public function excluirGuardaEmDB($motivo, $id)
     {
         try {
-
+            $statusDaOperacao = 'falha';
             DB::beginTransaction();
 
             $guarda = GuardaCivil::find($id);
@@ -112,12 +147,27 @@ class GuardaCivilService
 
             DB::commit();
 
+            $statusDaOperacao = 'sucesso';
             Log::info('Guarda Civil excluido com sucesso.');
 
-        } catch (\Exception $e) {
+        } 
+        catch (\Exception $e) {
             Log::error('Erro ao excluir guarda civil em Banco de Dados: ' . $e->getMessage());
             DB::rollBack();
             throw $e;
+        }
+        finally {
+
+            $dto = new AuditoriaDTO(
+                $statusDaOperacao,
+                auth()->user()->nome,
+                request()->ip(),
+                'Tentativa de exclusão de Guarda Civil',
+                $motivo,
+                $id
+            );
+
+            $this->auditoriaService->registrarAcao($dto);
         }
     }
 
@@ -128,7 +178,7 @@ class GuardaCivilService
             ->get();
     }
 
-        public function obterGuardasAtivosDoDB()
+    public function obterGuardasAtivosDoDB()
     {
         return GuardaCivil::orderBy('nome')
             ->get();
