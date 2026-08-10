@@ -28,7 +28,6 @@ class GuardaCivilService
     {
         try {
             $caminhoFoto = null;
-            $statusDaOperacao = 'falha';
 
             DB::beginTransaction();
 
@@ -43,9 +42,9 @@ class GuardaCivilService
                 'cpf' => $dadosDoGCM['cpf'],
                 'caminho_foto' => $caminhoFoto,
             ]);
-
+            
             $dto = new AuditoriaDTO(
-                $statusDaOperacao,
+                'sucesso',
                 auth()->user()->nome,
                 request()->ip(),
                 'Tentativa de registro de Guarda Civil',
@@ -57,7 +56,6 @@ class GuardaCivilService
 
             DB::commit();
 
-            $statusDaOperacao = 'sucesso';
             Log::info('Guarda Civil criado com sucesso.');
 
         } catch (\Exception $e) {
@@ -77,7 +75,6 @@ class GuardaCivilService
     {
         try {
             $caminhoFoto = null;
-            $statusDaOperacao = 'falha';
 
             DB::beginTransaction();
 
@@ -98,7 +95,7 @@ class GuardaCivilService
             ]);
 
             $dto = new AuditoriaDTO(
-                $statusDaOperacao,
+                'sucesso',
                 auth()->user()->nome,
                 request()->ip(),
                 'Tentativa de atualização de Guarda Civil',
@@ -110,7 +107,6 @@ class GuardaCivilService
 
             DB::commit();
 
-            $statusDaOperacao = 'sucesso';
             Log::info('Guarda Civil atualizado com sucesso.');
 
         } catch (\Exception $e) {
@@ -128,7 +124,6 @@ class GuardaCivilService
     public function excluirGuardaEmDB($motivo, $id)
     {
         try {
-            $statusDaOperacao = 'falha';
             DB::beginTransaction();
 
             $guarda = GuardaCivil::find($id);
@@ -141,7 +136,7 @@ class GuardaCivilService
             GuardaCivil::where('id', $id)->delete();
 
             $dto = new AuditoriaDTO(
-                $statusDaOperacao,
+                'sucesso',
                 auth()->user()->nome,
                 request()->ip(),
                 'Tentativa de exclusão de Guarda Civil',
@@ -153,7 +148,6 @@ class GuardaCivilService
 
             DB::commit();
 
-            $statusDaOperacao = 'sucesso';
             Log::info('Guarda Civil excluido com sucesso.');
 
         } catch (\Exception $e) {

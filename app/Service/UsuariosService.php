@@ -17,10 +17,10 @@ class UsuariosService
         $this->auditoriaService = $auditoriaService;
     }
 
-    public function cadastrarNovosUsuarioEmDB($informacoesDoUsuario) {
+    public function cadastrarNovosUsuarioEmDB($informacoesDoUsuario)
+    {
+        try {
 
-        try{
-            $statusDaOperacao = 'falha';
             DB::beginTransaction();
 
             $novoUsuario = User::create([
@@ -32,19 +32,8 @@ class UsuariosService
                 'tipo' => $informacoesDoUsuario['tipo'],
             ]);
 
-            DB::commit();
-
-            $statusDaOperacao = 'sucesso';
-            Log::info('Usuário cadastrado com sucesso.');
-        }
-        catch(\Exception $e){
-            Log::error('Erro ao cadastrar novo usuário em Banco de Dados: ', ['error' => $e->getMessage()]);
-            throw $e;
-        }
-        finally {
-
             $dto = new AuditoriaDTO(
-                $statusDaOperacao,
+                'sucesso',
                 Auth()->user()->nome,
                 request()->ip(),
                 'Tentou cadastrar um novo usuário',
@@ -54,6 +43,12 @@ class UsuariosService
 
             $this->auditoriaService->registrarAcao($dto);
 
+            DB::commit();
+
+            Log::info('Usuário cadastrado com sucesso.');
+        } catch (\Exception $e) {
+            Log::error('Erro ao cadastrar novo usuário em Banco de Dados: ', ['error' => $e->getMessage()]);
+            throw $e;
         }
     }
 }
