@@ -10,10 +10,12 @@ Route::post('/login', [App\Http\Controllers\AutenticacaoController::class, 'real
 Route::get('/qrcode', function () {
     return view('layouts.guest'); })->name('qrcode');
 
+
+
 Route::get('/gcms/{token}', [App\Http\Controllers\GuardaCivilController::class, 'visualizarDadosDoGCM'])->name('get.visualizarGCM');
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'rede.prefeitura'])->group(function () {
 
     Route::get('/gcms', [App\Http\Controllers\GuardaCivilController::class, 'encaminharParaIndex'])->name('home');
 
