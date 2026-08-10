@@ -28,17 +28,17 @@ class VerificarIpRedePrefeitura
             return $ip === $rede;
         }
        
-        [$redeIp, $prefixo] = explode('/', $rede);
+        [$redeIp, $prefixoDeMascara] = explode('/', $rede);
 
-        $ipLong = ip2long($ip);
-        $redeLong = ip2long($redeIp);
+        $ipComoInteiro = ip2long($ip);
+        $redeComoInteiro = ip2long($redeIp);
 
-        if ($ipLong === false || $redeLong === false) {
+        if ($ipComoInteiro === false || $redeComoInteiro === false) {
             return false;
         }
 
-        $mascara = -1 << (32 - (int) $prefixo);
+        $mascara = -1 << (32 - (int) $prefixoDeMascara);
 
-        return ($ipLong & $mascara) === ($redeLong & $mascara);
+        return ($ipComoInteiro & $mascara) === ($redeComoInteiro & $mascara);
     }
 }

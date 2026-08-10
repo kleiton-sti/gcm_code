@@ -2,25 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('auth.login');
-})->name('login');
+
+
+Route::get('/', function () { return view('auth.login'); })->name('login')->middleware('rede.prefeitura');
 
 Route::post('/login', [App\Http\Controllers\AutenticacaoController::class, 'realizarLogin'])->name('post.login');
-Route::get('/qrcode', function () {
-    return view('layouts.guest'); })->name('qrcode');
-
-
 
 Route::get('/gcms/{token}', [App\Http\Controllers\GuardaCivilController::class, 'visualizarDadosDoGCM'])->name('get.visualizarGCM');
-
 
 Route::middleware(['auth', 'rede.prefeitura'])->group(function () {
 
     Route::get('/gcms', [App\Http\Controllers\GuardaCivilController::class, 'encaminharParaIndex'])->name('home');
 
-    Route::get('/registro', function () {
-        return view('gcm.registro'); })->name('regsitroGCM');
+    Route::get('/registro', function () { return view('gcm.registro');})->name('regsitroGCM');
 
     Route::post('/registrar/gcm', [App\Http\Controllers\GuardaCivilController::class, 'registrarGCM'])->name('post.registroGCM');
 
