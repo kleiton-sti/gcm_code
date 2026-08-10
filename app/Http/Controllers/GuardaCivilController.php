@@ -45,9 +45,9 @@ class GuardaCivilController extends Controller
 
     } catch (\Throwable $e) {
       Log::warning('Erro ao registrar GCM: ', ['error' => $e->getMessage()]);
-      return back()
-        ->withInput()
-        ->withErrors(['error', 'Ocorreu um erro ao registrar o GCM.']);
+        return back()
+            ->withInput()
+            ->with('error', 'Não foi possível cadastrar o Guarda Civil.');
     }
   }
 
@@ -147,7 +147,7 @@ class GuardaCivilController extends Controller
 
         $imgConvertida = base64_decode($imgQrCodeSemPrefix);
 
-        $zip->addFromString("qrcode_{$guardaCivil->nome}.png", $imgConvertida);
+        $zip->addFromString("qrcode_{$guardaCivil->matricula}.png", $imgConvertida);
       }
 
       $zip->close();

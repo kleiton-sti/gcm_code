@@ -44,25 +44,6 @@ class GuardaCivilService
                 'caminho_foto' => $caminhoFoto,
             ]);
 
-            DB::commit();
-
-            $statusDaOperacao = 'sucesso';
-            Log::info('Guarda Civil criado com sucesso.');
-
-        } 
-        catch (\Exception $e) {
-            Log::error('Erro ao criar guarda civil em Banco de Dados: ' . $e->getMessage());
-
-            if ($caminhoFoto) {
-                $this->guardarArquivoService->excluirArquivo($caminhoFoto);
-            }
-
-            DB::rollBack();
-            throw $e;
-
-        } 
-        finally {
-            
             $dto = new AuditoriaDTO(
                 $statusDaOperacao,
                 auth()->user()->nome,
@@ -73,6 +54,22 @@ class GuardaCivilService
             );
 
             $this->auditoriaService->registrarAcao($dto);
+
+            DB::commit();
+
+            $statusDaOperacao = 'sucesso';
+            Log::info('Guarda Civil criado com sucesso.');
+
+        } catch (\Exception $e) {
+            Log::error('Erro ao criar guarda civil em Banco de Dados: ' . $e->getMessage());
+
+            if ($caminhoFoto) {
+                $this->guardarArquivoService->excluirArquivo($caminhoFoto);
+            }
+
+            DB::rollBack();
+            throw $e;
+
         }
     }
 
@@ -100,8 +97,19 @@ class GuardaCivilService
                 'caminho_foto' => $caminhoFoto ?? $dadosAnteriorDoGCM->caminho_foto,
             ]);
 
+            $dto = new AuditoriaDTO(
+                $statusDaOperacao,
+                auth()->user()->nome,
+                request()->ip(),
+                'Tentativa de atualização de Guarda Civil',
+                json_encode($guarda),
+                $dadosAnteriorDoGCM->id ?? null
+            );
+
+            $this->auditoriaService->registrarAcao($dto);
+
             DB::commit();
-            
+
             $statusDaOperacao = 'sucesso';
             Log::info('Guarda Civil atualizado com sucesso.');
 
@@ -114,19 +122,6 @@ class GuardaCivilService
 
             DB::rollBack();
             throw $e;
-        }
-        finally {
-
-            $dto = new AuditoriaDTO(
-                $statusDaOperacao,
-                auth()->user()->nome,
-                request()->ip(),
-                'Tentativa de atualização de Guarda Civil',
-                json_encode($guarda),
-                $dadosAnteriorDoGCM->id ?? null
-            );
-
-            $this->auditoriaService->registrarAcao($dto);
         }
     }
 
@@ -145,19 +140,6 @@ class GuardaCivilService
 
             GuardaCivil::where('id', $id)->delete();
 
-            DB::commit();
-
-            $statusDaOperacao = 'sucesso';
-            Log::info('Guarda Civil excluido com sucesso.');
-
-        } 
-        catch (\Exception $e) {
-            Log::error('Erro ao excluir guarda civil em Banco de Dados: ' . $e->getMessage());
-            DB::rollBack();
-            throw $e;
-        }
-        finally {
-
             $dto = new AuditoriaDTO(
                 $statusDaOperacao,
                 auth()->user()->nome,
@@ -168,6 +150,16 @@ class GuardaCivilService
             );
 
             $this->auditoriaService->registrarAcao($dto);
+
+            DB::commit();
+
+            $statusDaOperacao = 'sucesso';
+            Log::info('Guarda Civil excluido com sucesso.');
+
+        } catch (\Exception $e) {
+            Log::error('Erro ao excluir guarda civil em Banco de Dados: ' . $e->getMessage());
+            DB::rollBack();
+            throw $e;
         }
     }
 

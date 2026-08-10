@@ -29,7 +29,7 @@ class UsuariosController extends Controller
 
         } catch (\Throwable $e) {
             Log::warning('Erro ao cadastrar novo usuário: ', ['error' => $e->getMessage()]);
-            return back()
+            return redirect()->route('paginaDeCadastro')
                 ->withInput()
                 ->withErrors(['error', 'Ocorreu um erro ao registrar o GCM.']);
         }

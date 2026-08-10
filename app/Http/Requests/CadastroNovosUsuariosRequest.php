@@ -70,7 +70,11 @@ class CadastroNovosUsuariosRequest extends FormRequest
             'cpf.validaCpf' => 'O CPF informado é inválido.',
             'password.required' => 'A Senha é obrigatória.',
             'password.confirmed' => 'As Senhas devem ser iguais.',
-            'password.min' => 'A Senha deve ter no mínimo 8 caracteres.'
+            'password.min' => 'A Senha deve ter no mínimo 8 caracteres.',
+            'password.' => 'A Senha deve conter letras maiúsculas e minúsculas.',
+            'password.symbols' => 'A Senha deve conter pelo menos um símbolo.',
+            'password.numbers' => 'A Senha deve conter pelo menos um número.',
+            'password.uncompromised' => 'A Senha foi comprometida.',
         ];
     }
 }
