@@ -21,11 +21,14 @@ class RegistroDeGCMRequest extends FormRequest
             'cpf' => preg_replace('/\D/', '', $this->cpf),
             'rg' => preg_replace('/\D/', '', $this->rg),
             'data_nascimento' => date('Y-m-d', strtotime($this->data_nascimento)),
+            'nome_mae' => mb_strtoupper(trim($this->nome_mae)),
+            'nome_pai' => mb_strtoupper(trim($this->nome_pai)),
             'naturalidade' => preg_replace(
                 '/[^a-zA-ZÀ-ÿ\s]/u',
                 '',
                 mb_strtoupper(trim($this->naturalidade))
             ),
+            'estado' => mb_strtoupper(trim($this->estado)),
             'tipo_sanguineo' => mb_strtoupper(trim($this->tipo_sanguineo)),
             'cargo' => mb_strtoupper(trim($this->cargo)),
             'porte' => mb_strtoupper(trim($this->porte)),
@@ -45,7 +48,10 @@ class RegistroDeGCMRequest extends FormRequest
             'cpf' => ['required', 'string', 'max:11', 'unique:guardas_civil', new ValidadorDeCpf()],
             'rg' => ['required', 'string', 'max:9', 'unique:guardas_civil'],
             'data_nascimento' => ['required', 'date'],
+            'nome_mae' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
+            'nome_pai' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
             'naturalidade' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
+            'estado' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
             'tipo_sanguineo' => ['required', Rule::in(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])],
             'cargo' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
             'porte' => ['required', 'string', 'max:50'],
@@ -79,9 +85,21 @@ class RegistroDeGCMRequest extends FormRequest
 
             'data_nascimento.required' => 'A Data de Nascimento é obrigatória.',
 
+            'nome_mae.required' => 'O Nome da Mãe é obrigatório.',
+            'nome_mae.max' => 'O Nome da Mãe deve ter no máximo 50 caracteres.',
+            'nome_mae.regex' => 'O Nome da Mãe deve conter apenas letras.',
+
+            'nome_pai.required' => 'O Nome do Pai é obrigatório.',
+            'nome_pai.max' => 'O Nome do Pai deve ter no máximo 50 caracteres.',
+            'nome_pai.regex' => 'O Nome do Pai deve conter apenas letras.',
+
             'naturalidade.required' => 'A Naturalidade é obrigatória.',
             'naturalidade.max' => 'A Naturalidade deve ter no máximo 50 caracteres.',
             'naturalidade.regex' => 'A Naturalidade deve conter apenas letras.',
+
+            'estado.required' => 'O Estado é obrigatório.',
+            'estado.max' => 'O Estado deve ter no máximo 50 caracteres.',
+            'estado.regex' => 'O Estado deve conter apenas letras.',
 
             'tipo_sanguineo.required' => 'O Tipo Sanguíneo é obrigatório.',
 

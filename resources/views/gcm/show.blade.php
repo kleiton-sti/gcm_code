@@ -65,7 +65,101 @@
                                 </p>
                             </div>
 
+                            <div class="col-6 mb-3">
+                                <span class="form-label d-block">Cargo</span>
+                                <p class="mb-0">
+                                    {{ $guarda['cargo'] }}
+                                </p>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <span class="form-label d-block">Afiliação</span>
+                                <p class="mb-0">
+                                    {{ $guarda['afiliacao'] }}
+                                </p>
+                            </div>
+
                         </div>
+                    </div>
+
+                </div>
+
+                <hr class="my-4">
+
+                <div class="row credencial-dado">
+
+                    <h6 class="text-muted mb-3">Dados pessoais</h6>
+
+                    <div class="col-md-4 col-6 mb-3">
+                        <span class="form-label d-block">RG</span>
+                        <p class="mb-0">
+                            {{ $guarda->rg_formatado }}
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-6 mb-3">
+                        <span class="form-label d-block">Data de nascimento</span>
+                        <p class="mb-0">
+                            {{ $guarda->data_nascimento_formatada }}
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-6 mb-3">
+                        <span class="form-label d-block">Tipo sanguíneo</span>
+                        <p class="mb-0">
+                            {{ $guarda['tipo_sanguineo'] }}
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-6 mb-3">
+                        <span class="form-label d-block">Nome da mãe</span>
+                        <p class="mb-0">
+                            {{ $guarda['nome_mae'] }}
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-6 mb-3">
+                        <span class="form-label d-block">Nome do pai</span>
+                        <p class="mb-0">
+                            {{ $guarda['nome_pai'] }}
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-6 mb-3">
+                        <span class="form-label d-block">Naturalidade</span>
+                        <p class="mb-0">
+                            {{ $guarda['naturalidade'] }} / {{ $guarda['estado'] }}
+                        </p>
+                    </div>
+
+                    <h6 class="text-muted mb-3 mt-2">Dados funcionais</h6>
+
+                    <div class="col-md-3 col-6 mb-3">
+                        <span class="form-label d-block">Porte</span>
+                        <p class="mb-0">
+                            {{ $guarda['porte'] }}
+                        </p>
+                    </div>
+
+                    <div class="col-md-3 col-6 mb-3">
+                        <span class="form-label d-block">Admissão</span>
+                        <p class="mb-0">
+                            {{ \Carbon\Carbon::parse($guarda['admissao'])->format('d/m/Y') }}
+                        </p>
+                    </div>
+
+                    <div class="col-md-3 col-6 mb-3">
+                        <span class="form-label d-block">Expedição</span>
+                        <p class="mb-0">
+                            {{ \Carbon\Carbon::parse($guarda['expedicao'])->format('d/m/Y') }}
+                        </p>
+                    </div>
+
+                    <div class="col-md-3 col-6 mb-3">
+                        <span class="form-label d-block">Validade</span>
+                        <p class="mb-0">
+                            {{ \Carbon\Carbon::parse($guarda['validade'])->format('d/m/Y') }}
+                        </p>
                     </div>
 
                 </div>
