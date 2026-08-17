@@ -15,8 +15,18 @@ class GuardaCivil extends Model
     protected $fillable = [
         'token',
         'nome',
-        'matricula',
         'cpf',
+        'rg',
+        'data_nascimento',
+        'naturalidade',
+        'tipo_sanguineo',
+        'cargo',
+        'porte',
+        'afiliacao',
+        'matricula',
+        'admissao',
+        'expedicao',
+        'validade',
         'caminho_foto',
         'motivo_delete',
     ];
@@ -38,5 +48,19 @@ class GuardaCivil extends Model
         $cpf_formatado = substr($cpf, 0, 3) . '.***.***-' . substr($cpf, -2);
 
         return $cpf_formatado;
+    }
+
+    public function getRgFormatadoAttribute()
+    {
+        $rg = preg_replace('/\D/', '', $this->rg);
+
+        $rg_formatado = substr($rg, 0, 2) . '.***.***-' . substr($rg, -1);
+
+        return $rg_formatado;
+    }
+
+    public function getDataNascimentoFormatadaAttribute()
+    {
+        return date('d/m/Y', strtotime($this->data_nascimento));
     }
 }
