@@ -72,8 +72,6 @@ class GuardasRegistradosSeeder extends Seeder
                 'data_nascimento' => fake()->dateTimeBetween('-55 years', '-20 years')->format('Y-m-d'),
                 'nome_mae' => mb_strtoupper(fake()->name('female'), 'UTF-8'),
                 'nome_pai' => mb_strtoupper(fake()->name('male'), 'UTF-8'),
-                'naturalidade' => fake()->randomElement($naturalidades),
-                'estado' => 'SP',
                 'tipo_sanguineo' => fake()->randomElement($tiposSanguineos),
                 'cargo' => fake()->randomElement($cargos),
                 'porte' => fake()->randomElement($portes),

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
          $this->call([
         UsuariosCadastradosSeeder::class,
         GuardasRegistradosSeeder::class,
+        EnderecosSeeder::class
     ]);
     
     }

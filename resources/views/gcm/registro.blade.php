@@ -57,7 +57,7 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <x-form.input name="naturalidade" label="Naturalidade"
+                                        <x-form.input name="cidade" label="Cidade"
                                             placeholder="Ex.: Caraguatatuba" required />
                                     </div>
 

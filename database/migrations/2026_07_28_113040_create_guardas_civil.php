@@ -20,8 +20,6 @@ return new class extends Migration
            $table->date('data_nascimento');
            $table->string('nome_mae');
            $table->string('nome_pai');
-           $table->string('naturalidade');
-           $table->string('estado');
            $table->enum('tipo_sanguineo', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
            $table->string('cargo');
            $table->string('porte');
