@@ -6,6 +6,8 @@
     'placeholder' => '',
     'required' => false,
     'icon' => null,
+    'data-url' => null,
+    'class' => '',
 ])
 
 <div class="mb-3">

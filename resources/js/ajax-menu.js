@@ -28,8 +28,3 @@ document.querySelectorAll('.menu-ajax').forEach(link => {
         })
     })
 })
-
-
-function reaplicarMascaraDatatableAoIniciar() {
-    
-}

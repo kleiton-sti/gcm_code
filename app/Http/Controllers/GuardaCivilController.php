@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\QrCodeHelper;
-use App\Http\Requests\AtualizarRegistroGCMRequest;
 use App\Http\Requests\InativacaoDeGCMRequest;
 use App\Http\Requests\RegistroDeGCMRequest;
+use App\Models\Enderecos;
 use App\Service\GuardaCivilService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -45,9 +45,9 @@ class GuardaCivilController extends Controller
 
     } catch (\Throwable $e) {
       Log::warning('Erro ao registrar GCM: ', ['error' => $e->getMessage()]);
-        return back()
-            ->withInput()
-            ->with('error', 'Não foi possível cadastrar o Guarda Civil.');
+      return back()
+        ->withInput()
+        ->with('error', 'Não foi possível cadastrar o Guarda Civil.');
     }
   }
 
@@ -79,7 +79,7 @@ class GuardaCivilController extends Controller
     }
   }
 
-  public function atualizarDadosDoGCM(AtualizarRegistroGCMRequest $informacoesDoGCM, $id)
+  public function atualizarDadosDoGCM(RegistroDeGCMRequest $informacoesDoGCM, $id)
   {
     try {
       $guarda = $informacoesDoGCM->validated();
@@ -125,7 +125,7 @@ class GuardaCivilController extends Controller
   {
     try {
       $guardasCivis = $this->guardaCivilService->obterGuardasAtivosDoDB();
-    
+
 
       $zip = new ZipArchive();
       $zipPath = public_path('storage/qrcodes.zip');
@@ -153,6 +153,28 @@ class GuardaCivilController extends Controller
     } catch (\Throwable $e) {
       Log::warning('Erro ao gerar arquivo zip: ', ['error' => $e->getMessage()]);
       return redirect()->back()->with('error', 'Ocorreu um erro ao tentar baixar o arquivo.');
+    }
+  }
+
+  public function obterEnderecos()
+  {
+    try {
+      $enderecos = Enderecos::all();
+      return response()->json($enderecos);
+    } catch (\Throwable $e) {
+      Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
+      return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
+    }
+  }
+
+  public function obterEnderecoPorUf($uf)
+  {
+    try {
+      $enderecos = Enderecos::porUf($uf)->get();
+      return response()->json($enderecos);
+    } catch (\Throwable $e) {
+      Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
+      return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
     }
   }
 

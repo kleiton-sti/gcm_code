@@ -23,12 +23,8 @@ class RegistroDeGCMRequest extends FormRequest
             'data_nascimento' => date('Y-m-d', strtotime($this->data_nascimento)),
             'nome_mae' => mb_strtoupper(trim($this->nome_mae)),
             'nome_pai' => mb_strtoupper(trim($this->nome_pai)),
-            'naturalidade' => preg_replace(
-                '/[^a-zA-ZÀ-ÿ\s]/u',
-                '',
-                mb_strtoupper(trim($this->naturalidade))
-            ),
-            'estado' => mb_strtoupper(trim($this->estado)),
+            'cidade' => mb_strtoupper(trim($this->cidade)),
+            'uf' => mb_strtoupper(trim($this->uf)),
             'tipo_sanguineo' => mb_strtoupper(trim($this->tipo_sanguineo)),
             'cargo' => mb_strtoupper(trim($this->cargo)),
             'porte' => mb_strtoupper(trim($this->porte)),

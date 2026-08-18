@@ -31,6 +31,8 @@ Route::middleware(['auth', 'rede.prefeitura'])->group(function () {
     Route::delete('gcms/{id}/inativar', [App\Http\Controllers\GuardaCivilController::class, 'inativarGCM'])->name('delete.inativarGCM');
 
     Route::get('/download', [App\Http\Controllers\GuardaCivilController::class, 'baixarQrCode'])->name('get.baixarQrCode');
+
+    Route::get('/registrar/gcm/{uf}', [App\Http\Controllers\GuardaCivilController::class, 'obterEndereco'])->name('get.endereco');
 });
 
 
