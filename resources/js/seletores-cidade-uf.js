@@ -1,10 +1,15 @@
-export function buscarECriarOptionsNoCampoUF () {
+document.addEventListener('DOMContentLoaded', () => {
+    buscarECriarOptionsNoCampoUF();
+})
 
+export function buscarECriarOptionsNoCampoUF() {
     const CampoUFDaPaginaDeRegistro = document.getElementById('uf');
-    if(!CampoUFDaPaginaDeRegistro) return;
-    const url = CampoUFDaPaginaDeRegistro.getAttribute('data-url');
-    
-    fetch(url)
+
+    if (!CampoUFDaPaginaDeRegistro) return;
+
+    const rotaTodosEnderecos = CampoUFDaPaginaDeRegistro.getAttribute('data-url');
+
+    fetch(rotaTodosEnderecos)
         .then(response => response.json())
         .then(listaUf => {
             listaUf.forEach(listaUf => {
@@ -16,3 +21,26 @@ export function buscarECriarOptionsNoCampoUF () {
         });
 
 }
+
+export function buscarECriarOptionsNoCampoCidade(uf) {
+    const campoCidadeDaPaginaDeRegistro = document.getElementById('cidade');
+    campoCidadeDaPaginaDeRegistro.innerHTML = '';
+
+    if (!campoCidadeDaPaginaDeRegistro) return;
+
+    const rotaEnderecosPorUf = campoCidadeDaPaginaDeRegistro.getAttribute('data-url');
+
+    fetch(rotaEnderecosPorUf.replace(':uf', uf))
+        .then(response => response.json())
+        .then(listaEnderecos => {
+            listaEnderecos.forEach(listaEnderecos => {
+                const option = document.createElement('option');
+                option.value = listaEnderecos.cidade;
+                option.innerText = listaEnderecos.cidade;
+                campoCidadeDaPaginaDeRegistro.appendChild(option);
+            });
+        });
+
+}
+
+

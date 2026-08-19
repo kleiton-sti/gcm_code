@@ -55,15 +55,15 @@
                                         <x-form.input name="nome_pai" label="Nome do pai"
                                             placeholder="Digite o nome completo" required />
                                     </div>
-
-                                    <div class="col-md-4">
-                                        <x-form.input name="cidade" label="Cidade"
-                                            placeholder="Ex.: Caraguatatuba" required />
+                                    
+                                    <div class="col-md-2">
+                                        <x-form.select name="uf" label='UF' data-url="{{ route('get.enderecos') }}" id="uf"
+                                        placeholder="UF" required />
                                     </div>
 
-                                    <div class="col-md-1">
-                                        <x-form.select name="uf" label='UF' data-url="{{ route('get.endereco') }}" id="uf"
-                                        placeholder="UF" required />
+                                    <div class="col-md-4">
+                                        <x-form.select name="cidade" label="Cidade"  data-url="{{  route('get.enderecoPorUf', ['uf' => ':uf']) }}" id="cidade"
+                                            placeholder="Ex.: Caraguatatuba" required />
                                     </div>
 
                                     <div class="col-md-3">

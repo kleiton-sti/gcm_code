@@ -32,7 +32,9 @@ Route::middleware(['auth', 'rede.prefeitura'])->group(function () {
 
     Route::get('/download', [App\Http\Controllers\GuardaCivilController::class, 'baixarQrCode'])->name('get.baixarQrCode');
 
-    Route::get('/registrar/gcm/endereco', [App\Http\Controllers\GuardaCivilController::class, 'obterEnderecos'])->name('get.endereco');
+    Route::get('/registrar/gcm/endereco', [App\Http\Controllers\GuardaCivilController::class, 'obterEnderecos'])->name('get.enderecos');
+
+    Route::get('/registrar/gcm/endereco/{uf}', [App\Http\Controllers\GuardaCivilController::class, 'obterEnderecoPorUf'])->name('get.enderecoPorUf');
 });
 
 

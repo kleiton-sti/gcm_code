@@ -1,6 +1,6 @@
 import { iniciarDataTable } from './datatables.js';
 import { iniciarMascararCPF } from './mascara-cpf.js';
-import { buscarECriarOptionsNoCampoUF } from './seletores-cidade-uf.js';
+import { buscarECriarOptionsNoCampoUF, buscarECriarOptionsNoCampoCidade } from './seletores-cidade-uf.js';
 
 document.querySelectorAll('.menu-ajax').forEach(link => {
     link.addEventListener('click', (e) => {
@@ -11,12 +11,12 @@ document.querySelectorAll('.menu-ajax').forEach(link => {
 
         axios.get(url).then(response => {
 
-            const parser = new DOMParser(); 
+            const parser = new DOMParser();
 
             const htmlDoc = parser.parseFromString(response.data, 'text/html');
 
             const conteudoParaAdicionar = htmlDoc.querySelector('.conteudoDaPagina');
-           
+
             document.getElementById('conteudo').innerHTML = conteudoParaAdicionar.innerHTML;
 
             iniciarDataTable();
@@ -25,8 +25,8 @@ document.querySelectorAll('.menu-ajax').forEach(link => {
 
             buscarECriarOptionsNoCampoUF();
         })
-        .catch (error => {
-            console.log(error);
-        })
+            .catch(error => {
+                console.log(error);
+            })
     })
 })

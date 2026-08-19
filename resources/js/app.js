@@ -5,6 +5,7 @@ import './datatables';
 import './ajax-menu';
 import './modal';
 import './mascara-cpf';
+import { buscarECriarOptionsNoCampoCidade } from './seletores-cidade-uf';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,7 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
             document.exitFullscreen();
         }
     });
+
+
+    document.addEventListener('change', () => {
+
+        if (event.target.id != 'uf') return;
+        const uf = event.target.value;
+        buscarECriarOptionsNoCampoCidade(uf);
+    })
+
 });
+
+
 
 
 

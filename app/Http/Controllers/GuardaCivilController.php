@@ -159,7 +159,7 @@ class GuardaCivilController extends Controller
   public function obterEnderecos()
   {
     try {
-      $enderecos = Enderecos::all();
+      $enderecos = Enderecos::select('uf')->distinct()->get();
       return response()->json($enderecos);
     } catch (\Throwable $e) {
       Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
@@ -168,15 +168,15 @@ class GuardaCivilController extends Controller
   }
 
 
-  // public function obterEnderecoPorUf($uf)
-  // {
-  //   try {
-  //     $enderecos = Enderecos::porUf($uf)->get();
-  //     return response()->json($enderecos);
-  //   } catch (\Throwable $e) {
-  //     Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
-  //     return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
-  //   }
-  // }
+  public function obterEnderecoPorUf($uf)
+  {
+    try {
+      $enderecos = Enderecos::porUf($uf)->orderBy('cidade')->distinct()->get();
+      return response()->json($enderecos);
+    } catch (\Throwable $e) {
+      Log::warning('Erro ao exibir dados do GCM: ', ['error' => $e->getMessage()]);
+      return redirect()->route('home')->with('error', 'Ocorreu um erro ao exibir os dados do GCM.');
+    }
+  }
 
 }
