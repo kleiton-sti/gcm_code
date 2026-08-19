@@ -1,5 +1,6 @@
 import { iniciarDataTable } from './datatables.js';
 import { iniciarMascararCPF } from './mascara-cpf.js';
+import { buscarECriarOptionsNoCampoUF } from './seletores-cidade-uf.js';
 
 document.querySelectorAll('.menu-ajax').forEach(link => {
     link.addEventListener('click', (e) => {
@@ -22,6 +23,7 @@ document.querySelectorAll('.menu-ajax').forEach(link => {
 
             iniciarMascararCPF();
 
+            buscarECriarOptionsNoCampoUF();
         })
         .catch (error => {
             console.log(error);

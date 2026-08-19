@@ -5,6 +5,7 @@
     'selected' => null,
     'required' => false,
     'placeholder' => 'Selecione...',
+    'id' => '',
 ])
 
 <div class="mb-3">
@@ -19,7 +20,7 @@
 
     <select
         name="{{ $name }}"
-        id="{{ $name }}"
+        id="{{ $id }}"
         @if ($required) required @endif
         {{ $attributes->merge(['class' => 'form-select']) }}
     >

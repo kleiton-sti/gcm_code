@@ -62,7 +62,7 @@
                                     </div>
 
                                     <div class="col-md-1">
-                                        <x-form.select name="ufestado" label='UF' data-url="{{ route('get.endereco') }}" class="seletor-cidade-uf"
+                                        <x-form.select name="uf" label='UF' data-url="{{ route('get.endereco') }}" id="uf"
                                         placeholder="UF" required />
                                     </div>
 

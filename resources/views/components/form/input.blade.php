@@ -7,7 +7,7 @@
     'required' => false,
     'icon' => null,
     'data-url' => null,
-    'class' => '',
+    'id' => '',
 ])
 
 <div class="mb-3">

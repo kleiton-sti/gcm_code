@@ -1,20 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const seletor = document.querySelector('.seletor-cidade-uf');
-    if (!seletor) return;
+export function buscarECriarOptionsNoCampoUF () {
 
-    const input = seletor.querySelector('input');
-
-    input.addEventListener('input', (e) => {
-        const cidade = e.target.value;
-        const url = input.dataset.url + `/${cidade}`;
-    });
-
+    const CampoUFDaPaginaDeRegistro = document.getElementById('uf');
+    if(!CampoUFDaPaginaDeRegistro) return;
+    const url = CampoUFDaPaginaDeRegistro.getAttribute('data-url');
     
-})
+    fetch(url)
+        .then(response => response.json())
+        .then(listaUf => {
+            listaUf.forEach(listaUf => {
+                const option = document.createElement('option');
+                option.value = listaUf.uf;
+                option.innerText = listaUf.uf;
+                CampoUFDaPaginaDeRegistro.appendChild(option);
+            });
+        });
 
-
-document.querySelector('.seletor-cidade-uf').addEventListener('change', (e) => {
-    const estado = e.target.value;
-
-    const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`;
-})
+}
