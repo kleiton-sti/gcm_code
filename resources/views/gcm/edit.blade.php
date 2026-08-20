@@ -64,7 +64,7 @@
                                             required
                                         />
                                     </div>
-                                    <div class="col-md-2 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <x-form.input
                                             name="matricula"
                                             label="Matrícula"
@@ -73,7 +73,7 @@
                                             required
                                         />
                                     </div>
-                                    <div class="col-md-2 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <x-form.input
                                             name="data_nascimento"
                                             label="Data de nascimento"
@@ -83,7 +83,7 @@
                                             required
                                         />
                                     </div>
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <x-form.input
                                             name="nome_mae"
                                             label="Nome da mãe"
@@ -92,7 +92,7 @@
                                             required
                                         />
                                     </div>
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <x-form.input
                                             name="nome_pai"
                                             label="Nome da pai"
@@ -140,7 +140,7 @@
                                             required
                                         />
                                     </div>
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-2 mb-3">
                                         <x-form.select
                                             name="cargo"
                                             label="Cargo"
@@ -149,7 +149,7 @@
                                             required
                                         />
                                     </div>
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-2 mb-3">
                                         <x-form.select
                                             name="porte"
                                             label="Porte"
@@ -167,7 +167,7 @@
                                             required
                                         />
                                     </div>
-                                    <div class="col-md-2 mb-3">
+                                    <div class="col-md-3 mb-3">
                                         <x-form.select
                                             name="admissao"
                                             label="Data de admissão"
@@ -177,7 +177,7 @@
                                             required
                                         />
                                     </div>
-                                    <div class="col-md-2 mb-3">
+                                    <div class="col-md-3 mb-3">
                                         <x-form.select
                                             name="expedicao"
                                             label="Data de expedição"
@@ -187,7 +187,7 @@
                                             required
                                         />
                                     </div>
-                                    <div class="col-md-2 mb-3">
+                                    <div class="col-md-3 mb-3">
                                         <x-form.select
                                             name="validade"
                                             label="Validade"
