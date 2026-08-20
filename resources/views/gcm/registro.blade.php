@@ -28,12 +28,12 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <x-form.input name="cpf" class="cpf" label="CPF" placeholder="Digite o CPF"
+                                        <x-form.input name="cpf" class="cpf mascarado" label="CPF" placeholder="Digite o CPF"
                                             required />
                                     </div>
 
                                     <div class="col-md-4">
-                                        <x-form.input name="rg" class="rg" label="RG" placeholder="Digite o RG" required />
+                                        <x-form.input name="rg" class="rg mascarado" label="RG" placeholder="Digite o RG" required />
                                     </div>
 
                                     <div class="col-md-2">
@@ -55,6 +55,20 @@
                                         <x-form.input name="nome_pai" label="Nome do pai"
                                             placeholder="Digite o nome completo" required />
                                     </div>
+
+                                    <div class="col-md-2">
+                                        <x-form.select name="tipo_sanguineo" label="Tipo sanguineo"
+                                            placeholder="..." :options="[
+                                                'A+' => 'A+',
+                                                'A-' => 'A-',
+                                                'B+' => 'B+',
+                                                'B-' => 'B-',
+                                                'AB+' => 'AB+',
+                                                'AB-' => 'AB-',
+                                                'O+' => 'O+',
+                                                'O-' => 'O-',
+                                            ]" required />
+                                    </div>
                                     
                                     <div class="col-md-2">
                                         <x-form.select name="uf" label='UF' data-url="{{ route('get.enderecos') }}" id="uf"
@@ -63,7 +77,7 @@
 
                                     <div class="col-md-4">
                                         <x-form.select name="cidade" label="Cidade"  data-url="{{  route('get.enderecoPorUf', ['uf' => ':uf']) }}" id="cidade"
-                                            placeholder="Ex.: Caraguatatuba" required />
+                                            placeholder="Selecione uma cidade" required />
                                     </div>
 
                                     <div class="col-md-3">
@@ -87,7 +101,7 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <x-form.input name="validacao" label="Validade" type="date" placeholder="dd/mm/aaaa" required />
+                                        <x-form.input name="validade" label="Validade" type="date" placeholder="dd/mm/aaaa" required />
                                     </div>
                                     
                                 </div>

@@ -51,6 +51,7 @@ class GuardasRegistradosSeeder extends Seeder
         ];
 
         $tiposSanguineos = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+        $uf = ['SP', 'RJ', 'MG', 'ES'];
         $cargos = ['GUARDA CIVIL MUNICIPAL', 'GUARDA CIVIL MUNICIPAL 2ª CLASSE', 'INSPETOR DA GUARDA CIVIL', 'SUBINSPETOR DA GUARDA CIVIL'];
         $portes = ['PORTE DE ARMA FUNCIONAL', 'SEM PORTE DE ARMA'];
         $naturalidades = ['CARAGUATATUBA', 'SÃO SEBASTIÃO', 'UBATUBA', 'ILHABELA', 'SÃO PAULO'];
@@ -70,6 +71,8 @@ class GuardasRegistradosSeeder extends Seeder
                 'cpf' => $guarda['cpf'],
                 'rg' => $rg,
                 'data_nascimento' => fake()->dateTimeBetween('-55 years', '-20 years')->format('Y-m-d'),
+                'cidade' => fake()->city(),
+                'uf' => fake()->randomElement($uf),
                 'nome_mae' => mb_strtoupper(fake()->name('female'), 'UTF-8'),
                 'nome_pai' => mb_strtoupper(fake()->name('male'), 'UTF-8'),
                 'tipo_sanguineo' => fake()->randomElement($tiposSanguineos),

@@ -17,7 +17,8 @@ return new class extends Migration {
             $table->string('cpf')->unique();
             $table->string('rg')->unique();
             $table->date('data_nascimento');
-            $table->foreignId('cidade_id')->constrained('enderecos')->cascadeOnDelete();
+            $table->string('cidade');
+            $table->char('uf', 2);
             $table->string('nome_mae');
             $table->string('nome_pai');
             $table->enum('tipo_sanguineo', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);

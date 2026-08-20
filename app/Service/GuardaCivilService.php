@@ -38,8 +38,21 @@ class GuardaCivilService
             $NovoRegistro = GuardaCivil::create([
                 'token' => hash('sha256', $dadosDoGCM['cpf']),
                 'nome' => $dadosDoGCM['nome'],
-                'matricula' => $dadosDoGCM['matricula'],
                 'cpf' => $dadosDoGCM['cpf'],
+                'rg' => $dadosDoGCM['rg'],
+                'data_nascimento' => $dadosDoGCM['data_nascimento'],
+                'nome_mae' => $dadosDoGCM['nome_mae'],
+                'nome_pai' => $dadosDoGCM['nome_pai'],
+                'cidade' => $dadosDoGCM['cidade'],
+                'uf' => $dadosDoGCM['uf'],
+                'tipo_sanguineo' => $dadosDoGCM['tipo_sanguineo'],
+                'cargo' => $dadosDoGCM['cargo'],
+                'porte' => $dadosDoGCM['porte'],
+                'afiliacao' => $dadosDoGCM['afiliacao'],
+                'matricula' => $dadosDoGCM['matricula'],
+                'admissao' => $dadosDoGCM['admissao'],
+                'expedicao' => $dadosDoGCM['expedicao'],
+                'validade' => $dadosDoGCM['validade'],
                 'caminho_foto' => $caminhoFoto,
             ]);
             
@@ -81,7 +94,7 @@ class GuardaCivilService
             $dadosAnteriorDoGCM = GuardaCivil::findOrFail($id);
 
 
-            if (isset($guarda['foto']) && $guarda['foto'] != $dadosAnteriorDoGCM->first()->caminho_foto) {
+            if (isset($guarda['foto']) && $guarda['foto'] != $dadosAnteriorDoGCM->caminho_foto) {
                 $this->guardarArquivoService->excluirArquivo($dadosAnteriorDoGCM->caminho_foto);
                 $caminhoFoto = $this->guardarArquivoService->guardarArquivo('guardas/fotos', $guarda['foto']);
             }
@@ -89,8 +102,21 @@ class GuardaCivilService
             GuardaCivil::where('id', $id)->update([
                 'token' => hash('sha256', $guarda['cpf']),
                 'nome' => $guarda['nome'],
-                'matricula' => $guarda['matricula'],
                 'cpf' => $guarda['cpf'],
+                'rg' => $guarda['rg'],
+                'data_nascimento' => $guarda['data_nascimento'],
+                'nome_mae' => $guarda['nome_mae'],
+                'nome_pai' => $guarda['nome_pai'],
+                'cidade' => $guarda['cidade'],
+                'uf' => $guarda['uf'],
+                'tipo_sanguineo' => $guarda['tipo_sanguineo'],
+                'cargo' => $guarda['cargo'],
+                'porte' => $guarda['porte'],
+                'afiliacao' => $guarda['afiliacao'],
+                'matricula' => $guarda['matricula'],
+                'admissao' => $guarda['admissao'],
+                'expedicao' => $guarda['expedicao'],
+                'validade' => $guarda['validade'],
                 'caminho_foto' => $caminhoFoto ?? $dadosAnteriorDoGCM->caminho_foto,
             ]);
 

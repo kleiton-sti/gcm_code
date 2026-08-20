@@ -38,21 +38,22 @@ class RegistroDeGCMRequest extends FormRequest
 
     public function rules(): array
     {
+        $id = $this->route('id');
 
         return [
             'nome' => ['required', 'string', 'min:5', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
-            'cpf' => ['required', 'string', 'max:11', 'unique:guardas_civil', new ValidadorDeCpf()],
-            'rg' => ['required', 'string', 'max:9', 'unique:guardas_civil'],
+            'cpf' => ['required', 'string', 'max:11', Rule::unique('guardas_civil')->ignore($id), new ValidadorDeCpf()],
+            'rg' => ['required', 'string', 'max:9', Rule::unique('guardas_civil')->ignore($id)],
             'data_nascimento' => ['required', 'date'],
             'nome_mae' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
             'nome_pai' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
-            'naturalidade' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
-            'estado' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
+            'cidade' => ['required', 'string', 'max:50', Rule::exists('enderecos', 'cidade')->where(fn($query) => $query->where('uf', $this->uf))],
+            'uf' => ['required', 'string', 'max:2', Rule::exists('enderecos', 'uf')],
             'tipo_sanguineo' => ['required', Rule::in(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])],
             'cargo' => ['required', 'string', 'max:50', 'regex:/^[\pL\s\'-]+$/u'],
             'porte' => ['required', 'string', 'max:50'],
             'afiliacao' => ['required', 'string', 'max:50'],
-            'matricula' => ['required', 'string', 'max:10', 'regex:/^\d+$/', 'unique:guardas_civil'],
+            'matricula' => ['required', 'string', 'max:10', 'regex:/^\d+$/', Rule::unique('guardas_civil')->ignore($id)],
             'admissao' => ['required', 'date'],
             'expedicao' => ['required', 'date'],
             'validade' => ['required', 'date'],
@@ -89,13 +90,11 @@ class RegistroDeGCMRequest extends FormRequest
             'nome_pai.max' => 'O Nome do Pai deve ter no máximo 50 caracteres.',
             'nome_pai.regex' => 'O Nome do Pai deve conter apenas letras.',
 
-            'naturalidade.required' => 'A Naturalidade é obrigatória.',
-            'naturalidade.max' => 'A Naturalidade deve ter no máximo 50 caracteres.',
-            'naturalidade.regex' => 'A Naturalidade deve conter apenas letras.',
+            'cidade.required' => 'A Cidade é obrigatória.',
+            'cidade.exists' => 'Selecione uma Cidade válida para o Estado informado.',
 
-            'estado.required' => 'O Estado é obrigatório.',
-            'estado.max' => 'O Estado deve ter no máximo 50 caracteres.',
-            'estado.regex' => 'O Estado deve conter apenas letras.',
+            'uf.required' => 'O Estado é obrigatório.',
+            'uf.exists' => 'Selecione um Estado válido.',
 
             'tipo_sanguineo.required' => 'O Tipo Sanguíneo é obrigatório.',
 

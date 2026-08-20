@@ -4,7 +4,6 @@ import 'admin-lte';
 import './datatables';
 import './ajax-menu';
 import './modal';
-import './mascara-cpf';
 import { buscarECriarOptionsNoCampoCidade } from './seletores-cidade-uf';
 
 

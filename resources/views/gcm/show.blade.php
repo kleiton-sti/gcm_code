@@ -128,7 +128,7 @@
                     <div class="col-md-4 col-6 mb-3">
                         <span class="form-label d-block">Naturalidade</span>
                         <p class="mb-0">
-                            {{ $guarda['naturalidade'] }} / {{ $guarda['estado'] }}
+                            {{ $guarda['cidade'] }} - {{ $guarda['uf'] }}
                         </p>
                     </div>
 

@@ -9,12 +9,24 @@ export function mascararCPF(cpf) {
 }
 
 
-export function iniciarMascararCPF() {
+export function mascararRG(rg) {
+    rg = String(rg).replace(/\D/g, "");
+
+    rg = rg.replace(/(\d{2})(\d)/, "$1.$2");
+    rg = rg.replace(/(\d{3})(\d)/, "$1.$2");
+    rg = rg.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+    return rg;
+}
+
+
+export function mascararCPFeRG () {
 
 // Máscara enquanto digita no input para criar usuário, novo guarda e editar guarda
-document.querySelectorAll("input.cpf").forEach(input => {
+document.querySelectorAll(".mascarado").forEach(input => {
     input.addEventListener("input", (e) => {
-        e.target.value = mascararCPF(e.target.value);
+        if (e.target.name == "cpf")  e.target.value = mascararCPF(e.target.value);
+        if (e.target.name == "rg")  e.target.value = mascararRG(e.target.value);
     });
 });
 
@@ -35,4 +47,4 @@ document.querySelectorAll(".cpf").forEach(elemento => {
 
 }
 
-iniciarMascararCPF();
+mascararCPFeRG();
