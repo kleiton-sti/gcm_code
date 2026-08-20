@@ -17,41 +17,41 @@
                     </x-slot:header>
                     <form action="{{ route('post.registroGCM') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="row">
-                            <div class="col-md-3 py-5">
+                        <div class="row g-4">
+                            <div class="col-md-3 py-5 text-center">
                                 <x-form.photo-upload name="foto" label="Foto" />
                             </div>
                             <div class="col-md-9">
-                                <div class="row">
-                                    <div class="col-md-4">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
                                         <x-form.input name="nome" label="Nome" placeholder="Nome completo" required />
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <x-form.input name="cpf" class="cpf mascarado" label="CPF" placeholder="Digite o CPF"
                                             required />
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <x-form.input name="rg" class="rg mascarado" label="RG" placeholder="Digite o RG" required />
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <x-form.input name="matricula" label="Matrícula" placeholder="Ex.: 123456"
                                             required />
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <x-form.input name="data_nascimento" label="Data de nascimento" type="date"
                                             placeholder="Ex.: dd/mm/aaaa" required />
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <x-form.input name="nome_mae" label="Nome da mãe"
                                             placeholder="Digite o nome completo" required />
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <x-form.input name="nome_pai" label="Nome do pai"
                                             placeholder="Digite o nome completo" required />
                                     </div>
@@ -80,11 +80,11 @@
                                             placeholder="Selecione uma cidade" required />
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <x-form.input name="cargo" label="Cargo" placeholder="Digite o cargo" required />
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <x-form.input name="porte" label="Porte" placeholder="Digite o porte" required />
                                     </div>
                                     
@@ -92,15 +92,15 @@
                                         <x-form.input name="afiliacao" label="Afiliação" placeholder="Digite sua afiliação" required />
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <x-form.input name="admissao" label="Data de admissão" type="date" placeholder="dd/mm/aaaa" required />
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <x-form.input name="expedicao" label="Data de expedição" type="date" placeholder="dd/mm/aaaa" required />
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <x-form.input name="validade" label="Validade" type="date" placeholder="dd/mm/aaaa" required />
                                     </div>
                                     
