@@ -57,7 +57,7 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <x-form.select name="tipo_sanguineo" label="Tipo sanguineo"
+                                        <x-form.select name="tipo_sanguineo" label="Sangue"
                                             placeholder="..." :options="[
                                                 'A+' => 'A+',
                                                 'A-' => 'A-',

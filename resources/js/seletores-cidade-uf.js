@@ -8,6 +8,7 @@ export function buscarECriarOptionsNoCampoUF() {
     if (!CampoUFDaPaginaDeRegistro) return;
 
     const rotaTodosEnderecos = CampoUFDaPaginaDeRegistro.getAttribute('data-url');
+    const ufAtual = CampoUFDaPaginaDeRegistro.getAttribute('data-valor-atual');
 
     fetch(rotaTodosEnderecos)
         .then(response => response.json())
@@ -18,15 +19,22 @@ export function buscarECriarOptionsNoCampoUF() {
                 option.innerText = listaUf.uf;
                 CampoUFDaPaginaDeRegistro.appendChild(option);
             });
+
+            if (ufAtual) {
+                CampoUFDaPaginaDeRegistro.value = ufAtual;
+                buscarECriarOptionsNoCampoCidade(ufAtual);
+            }
         });
 
 }
 
 export function buscarECriarOptionsNoCampoCidade(uf) {
     const campoCidadeDaPaginaDeRegistro = document.getElementById('cidade');
-    campoCidadeDaPaginaDeRegistro.innerHTML = '';
 
     if (!campoCidadeDaPaginaDeRegistro) return;
+
+    const cidadeAtual = campoCidadeDaPaginaDeRegistro.getAttribute('data-valor-atual');
+    campoCidadeDaPaginaDeRegistro.innerHTML = '';
 
     const rotaEnderecosPorUf = campoCidadeDaPaginaDeRegistro.getAttribute('data-url');
 
@@ -39,6 +47,10 @@ export function buscarECriarOptionsNoCampoCidade(uf) {
                 option.innerText = listaEnderecos.cidade;
                 campoCidadeDaPaginaDeRegistro.appendChild(option);
             });
+
+            if (cidadeAtual) {
+                campoCidadeDaPaginaDeRegistro.value = cidadeAtual;
+            }
         });
 
 }

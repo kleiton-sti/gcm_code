@@ -104,7 +104,7 @@
                                     <div class="col-md-2 mb-3">
                                         <x-form.select
                                             name="tipo_sanguineo"
-                                            label="Tipo sanguineo"
+                                            label="Sangue"
                                             placeholder="..."
                                             :options="[
                                                 'A+' => 'A+',
@@ -116,7 +116,7 @@
                                                 'O+' => 'O+',
                                                 'O-' => 'O-',
                                             ]"
-                                            value="{{ old('tipo_sanguineo', $guarda['tipo_sanguineo']) }}"
+                                            :selected="old('tipo_sanguineo', $guarda['tipo_sanguineo'])"
                                             required
                                         />
                                     </div>
@@ -126,7 +126,8 @@
                                             label="UF"
                                             data-url="{{ route('get.enderecos') }}" id="uf"
                                             placeholder="UF" 
-                                            value="{{ old('uf', $guarda['uf']) }}"
+                                            :selected="old('uf', $guarda['uf'])"
+                                            data-valor-atual="{{ old('uf', $guarda['uf']) }}"
                                             required
                                         />
                                     </div>
@@ -136,12 +137,13 @@
                                             label="Cidade"
                                             data-url="{{  route('get.enderecoPorUf', ['uf' => ':uf']) }}" id="cidade"
                                             placeholder="Selecione uma cidade" 
-                                            value="{{ old('cidade', $guarda['cidade']) }}"
+                                            :selected="old($guarda['cidade'])"
+                                            data-valor-atual="{{ old('cidade', $guarda['cidade']) }}"
                                             required
                                         />
                                     </div>
                                     <div class="col-md-2 mb-3">
-                                        <x-form.select
+                                        <x-form.input
                                             name="cargo"
                                             label="Cargo"
                                             placeholder="Digite o cargo"
@@ -150,7 +152,7 @@
                                         />
                                     </div>
                                     <div class="col-md-2 mb-3">
-                                        <x-form.select
+                                        <x-form.input
                                             name="porte"
                                             label="Porte"
                                             value="{{ old('porte', $guarda['porte']) }}"
@@ -159,7 +161,7 @@
                                         />
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <x-form.select
+                                        <x-form.input
                                             name="afiliacao"
                                             label="Afiliação"
                                             value="{{ old('afiliacao', $guarda['afiliacao']) }}"
@@ -168,7 +170,7 @@
                                         />
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <x-form.select
+                                        <x-form.input
                                             name="admissao"
                                             label="Data de admissão"
                                             type="date"
@@ -178,7 +180,7 @@
                                         />
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <x-form.select
+                                        <x-form.input
                                             name="expedicao"
                                             label="Data de expedição"
                                             type="date"
@@ -188,7 +190,7 @@
                                         />
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <x-form.select
+                                        <x-form.input
                                             name="validade"
                                             label="Validade"
                                             type="date"
