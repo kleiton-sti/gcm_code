@@ -23,7 +23,7 @@ class GuardaCivilService
         $this->auditoriaService = $auditoriaService;
     }
 
-
+    
     public function criarGuardaEmDB($dadosDoGCM)
     {
         try {

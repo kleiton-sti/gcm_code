@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    document.addEventListener('change', () => {
+    document.addEventListener('change', (event) => {
 
         if (event.target.id != 'uf') return;
         const uf = event.target.value;
